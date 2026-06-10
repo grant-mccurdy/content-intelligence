@@ -1,4 +1,4 @@
-# Content Intelligence Reporting
+# Content Intelligence
 
 Generalized content intelligence pipeline for turning unstructured instructional
 artifacts into analysis-ready information objects, searchable corpora, and
@@ -131,7 +131,7 @@ make portfolio-demo
 ## Current Structure
 
 ```text
-content-intelligence-reporting/
+content-intelligence/
 ├── corpus_pipeline/
 │   ├── __init__.py
 │   └── common.py

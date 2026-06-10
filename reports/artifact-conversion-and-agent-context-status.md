@@ -12,7 +12,7 @@ cleaned lecture transcript text into consistent, validated information objects.
 The current repo has strong public-safe demos and object models, but it does not
 yet have a general ingestion script for real cleaned instructional artifacts.
 
-## What Exists In `content-intelligence-reporting`
+## What Exists In `content-intelligence`
 
 The public repo currently includes portfolio-safe demonstrations of:
 
@@ -106,12 +106,12 @@ objects to consume.
    A good first target is the longitudinal model work in:
 
    ```text
-   /home/grant/repos/public/synthetic-math-department
+   /home/grant/repos/public/synthetic-education-data
    ```
 
    The packet should combine content-intelligence method rules with the current
-   synthetic math department methodology and the task of designing Assignments
-   02-14.
+   synthetic education data methodology and the task of designing longitudinal
+   assignment transitions after Assignment 02.
 
 ## Design Guidance For The Agent Packet
 
