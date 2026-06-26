@@ -41,6 +41,8 @@ def build_pack(root: Path) -> dict[str, Any]:
             "sample_outputs/cloud_video_transcription/corpus.json",
             "sample_outputs/cloud_video_transcription/transcript_enrichment_brief.md",
             "sample_outputs/ocr_document_cleanup/corpus.json",
+            "sample_outputs/rag-index.json",
+            "sample_outputs/public-safety-review.json",
         ],
     )
     generated["human_readable_companions"] = existing_references(
@@ -52,8 +54,8 @@ def build_pack(root: Path) -> dict[str, Any]:
         ],
     )
     generated["task_contract"] = {
-        "task": "Generate a source-grounded instructional analysis brief.",
-        "inputs": ["SourceManifestRecord[]", "CorpusSegment[]"],
+        "task": "Generate a source-grounded instructional analysis brief or RAG response.",
+        "inputs": ["SourceManifestRecord[]", "CorpusSegment[]", "RagIndexRecord[]"],
         "outputs": ["EvidenceCitation[]", "ReportBrief"],
         "required_behavior": [
             "retrieve relevant source-preserving segments",

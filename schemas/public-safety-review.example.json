@@ -1,0 +1,8 @@
+{
+  "object_type": "PublicSafetyReview",
+  "schema_version": 1,
+  "status": "pass",
+  "checked_records": 1,
+  "forbidden_pattern_hits": [],
+  "rules": ["email", "local_home_path", "openai_key"]
+}

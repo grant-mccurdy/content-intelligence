@@ -24,6 +24,29 @@ REQUIRED_FIELDS = {
         "public_safety",
     },
     "CorpusSegment": {"segment_id", "source_id", "title", "source_type", "text", "citation"},
+    "RagIndexRecord": {
+        "object_type",
+        "schema_version",
+        "chunk_id",
+        "segment_id",
+        "source_id",
+        "title",
+        "source_type",
+        "citation",
+        "text",
+        "collection",
+        "domain",
+        "content_hash",
+        "embedding_model",
+        "embedding_dimensions",
+        "artifact_pipeline",
+        "public_safety_level",
+        "embedding_status",
+        "retrieval_metadata",
+    },
+    "RagIndex": {"object_type", "schema_version", "chunk_count", "embedding_status", "records"},
+    "PublicSafetyReview": {"object_type", "schema_version", "status", "checked_records", "forbidden_pattern_hits", "rules"},
+    "VectorExportRecord": {"object_type", "schema_version", "id", "embedding_text", "text", "metadata"},
     "EvidenceCitation": {"question", "rank", "segment_id", "source_id", "citation", "score", "excerpt"},
     "ReportBrief": {"object_type", "schema_version", "title", "questions", "evidence_citations"},
     "InformationObjectMap": {"object_type", "schema_version", "object_families", "pipelines"},
@@ -170,6 +193,80 @@ def validate_method_pack(path: Path, errors: list[str]) -> int:
     return 1
 
 
+def validate_rag_index(path: Path, errors: list[str]) -> int:
+    rag_index = load_json(path)
+    require_fields(str(path), rag_index, REQUIRED_FIELDS["RagIndex"], errors)
+    records = rag_index.get("records", [])
+    if not isinstance(records, list):
+        errors.append(f"{path}: records must be a list")
+        return 0
+    for idx, record in enumerate(records, start=1):
+        if not isinstance(record, dict):
+            errors.append(f"{path}: record {idx} is not an object")
+            continue
+        require_fields(f"{path}: record {idx}", record, REQUIRED_FIELDS["RagIndexRecord"], errors)
+        if record.get("public_safety_level") != "L3_public_safe_derivative":
+            errors.append(f"{path}: record {idx} must be L3 public-safe derivative")
+        if record.get("domain") != "content_intelligence":
+            errors.append(f"{path}: record {idx} must declare domain content_intelligence")
+        if record.get("collection") not in {"evidence", "method"}:
+            errors.append(f"{path}: record {idx} collection must be evidence or method")
+    expected_count = rag_index.get("chunk_count")
+    if expected_count is not None and int(expected_count) != len(records):
+        errors.append(f"{path}: chunk_count {expected_count} does not match {len(records)} records")
+    return len(records)
+
+
+def validate_public_safety_review(path: Path, errors: list[str]) -> int:
+    review = load_json(path)
+    require_fields(str(path), review, REQUIRED_FIELDS["PublicSafetyReview"], errors)
+    if review.get("status") != "pass":
+        errors.append(f"{path}: public safety status is {review.get('status')}")
+    hits = review.get("forbidden_pattern_hits", [])
+    if not isinstance(hits, list):
+        errors.append(f"{path}: forbidden_pattern_hits must be a list")
+    elif hits:
+        errors.append(f"{path}: forbidden pattern hits present")
+    return 1
+
+
+def validate_vector_records(path: Path, errors: list[str]) -> int:
+    if not path.exists():
+        errors.append(f"{path}: missing vector export")
+        return 0
+    count = 0
+    with path.open(encoding="utf-8") as handle:
+        for idx, line in enumerate(handle, start=1):
+            if not line.strip():
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError as exc:
+                errors.append(f"{path}: line {idx} invalid JSON: {exc.msg}")
+                continue
+            require_fields(f"{path}: line {idx}", record, REQUIRED_FIELDS["VectorExportRecord"], errors)
+            metadata = record.get("metadata", {})
+            if not isinstance(metadata, dict):
+                errors.append(f"{path}: line {idx} metadata must be an object")
+                continue
+            if metadata.get("public_safety_level") != "L3_public_safe_derivative":
+                errors.append(f"{path}: line {idx} must be L3 public-safe derivative")
+            if metadata.get("domain") != "content_intelligence":
+                errors.append(f"{path}: line {idx} must declare domain content_intelligence")
+            if metadata.get("collection") not in {"evidence", "method"}:
+                errors.append(f"{path}: line {idx} collection must be evidence or method")
+            if not metadata.get("citation"):
+                errors.append(f"{path}: line {idx} missing citation metadata")
+            if metadata.get("embedding_model") != "@cf/baai/bge-base-en-v1.5":
+                errors.append(f"{path}: line {idx} unexpected embedding model")
+            if metadata.get("embedding_dimensions") != 768:
+                errors.append(f"{path}: line {idx} unexpected embedding dimensions")
+            count += 1
+    if count == 0:
+        errors.append(f"{path}: no vector records found")
+    return count
+
+
 def validate(root: Path) -> tuple[int, list[str]]:
     errors: list[str] = []
     checked = 0
@@ -188,6 +285,9 @@ def validate(root: Path) -> tuple[int, list[str]]:
         checked += validate_corpus(path, errors)
     checked += validate_report_brief(root / "sample_outputs" / "report-brief.json", errors)
     checked += validate_enrichment_packets(root / "sample_outputs" / "cloud_video_transcription" / "enrichment_packets", errors)
+    checked += validate_rag_index(root / "sample_outputs" / "rag-index.json", errors)
+    checked += validate_public_safety_review(root / "sample_outputs" / "public-safety-review.json", errors)
+    checked += validate_vector_records(root / "sample_outputs" / "vector-records.jsonl", errors)
     checked += validate_object_map(root / "sample_outputs" / "information-object-map.json", errors)
     checked += validate_method_pack(root / "method_pack" / "analysis-method-pack.json", errors)
     checked += validate_method_pack(root / "sample_outputs" / "analysis-method-pack.json", errors)

@@ -1,0 +1,15 @@
+{
+  "checked_records": 80,
+  "forbidden_pattern_hits": [],
+  "object_type": "PublicSafetyReview",
+  "rules": [
+    "dropbox_url_or_token",
+    "email",
+    "local_home_path",
+    "openai_key",
+    "private_course_code",
+    "windows_user_path"
+  ],
+  "schema_version": 1,
+  "status": "pass"
+}

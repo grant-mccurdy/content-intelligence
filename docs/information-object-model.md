@@ -2,7 +2,8 @@
 
 This project turns instructional artifacts into analysis-ready information
 objects. The objects are intentionally small, structured, and provenance-aware
-so they can feed search, reporting, algorithmic analysis, or agent context.
+so they can feed search, reporting, algorithmic analysis, agent context, or a
+source-grounded RAG service.
 
 ```text
 instructional artifacts
@@ -10,6 +11,7 @@ instructional artifacts
 -> NormalizedArtifact
 -> TranscriptEnrichmentPacket
 -> CorpusSegment
+-> RagIndexRecord
 -> EvidenceCitation
 -> ReportBrief
 ```
@@ -38,6 +40,12 @@ edits, disallowed edits, correction notes, and public-safety metadata.
 Stores a source-preserving text segment with a stable segment ID, source ID,
 title, source type, text, and citation label.
 
+### RagIndexRecord
+
+Packages a public-safe corpus segment for retrieval and vector indexing. It
+adds a stable chunk ID, public-safety level, source visibility, license status,
+embedding status, and retrieval metadata.
+
 ### EvidenceCitation
 
 Links a downstream question or claim to a supporting corpus segment. This is the
@@ -54,4 +62,5 @@ review workflow.
 - Every object should keep enough provenance to trace back to a source record.
 - Public examples must use synthetic or licensed sources.
 - Private raw artifacts should not be copied into public objects.
+- RAG index records should contain only public-safe derivatives.
 - Downstream analysis should consume objects, not ad hoc raw files.

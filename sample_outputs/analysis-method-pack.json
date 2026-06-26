@@ -30,6 +30,16 @@
       "exists": true,
       "kind": "json",
       "path": "sample_outputs/ocr_document_cleanup/corpus.json"
+    },
+    {
+      "exists": true,
+      "kind": "json",
+      "path": "sample_outputs/rag-index.json"
+    },
+    {
+      "exists": true,
+      "kind": "json",
+      "path": "sample_outputs/public-safety-review.json"
     }
   ],
   "human_readable_companions": [
@@ -63,6 +73,13 @@
       ],
       "name": "analysis_corpus",
       "use": "Retrieve bounded source-preserving passages for search, synthesis, and report evidence."
+    },
+    {
+      "accepts": [
+        "RagIndexRecord"
+      ],
+      "name": "rag_index",
+      "use": "Retrieve public-safe chunks with citation metadata for source-grounded RAG responses."
     }
   ],
   "method_pack_version": "0.1.0",
@@ -72,7 +89,8 @@
     "TranscriptEnrichmentPacket",
     "CorpusSegment",
     "EvidenceCitation",
-    "ReportBrief"
+    "ReportBrief",
+    "RagIndexRecord"
   ],
   "object_type": "AnalysisMethodPack",
   "output_contracts": [
@@ -81,8 +99,8 @@
         "EvidenceCitation",
         "ReportBrief"
       ],
-      "name": "evidence_first_report",
-      "use": "Produce concise analysis with every claim tied to cited source segments."
+      "name": "evidence_first_report_or_response",
+      "use": "Produce concise analysis or RAG responses with every claim tied to cited source segments."
     }
   ],
   "privacy_rules": [
@@ -90,10 +108,13 @@
     "Do not reproduce copyrighted or private source text outside approved excerpts.",
     "Use synthetic or licensed examples for public demos."
   ],
-  "purpose": "Guide an AI or algorithm in converting instructional information objects into source-grounded analysis and reports.",
+  "purpose": "Guide an AI or algorithm in converting instructional information objects into source-grounded analysis, reports, and RAG responses.",
   "references": {
+    "artifact_to_rag_workflow": "docs/artifact-to-rag-workflow.md",
     "cleanup_policy": "docs/cleanup-policy.md",
+    "evaluation_protocol": "docs/evaluation-protocol.md",
     "object_model": "docs/information-object-model.md",
+    "rag_architecture": "docs/rag-architecture.md",
     "source_grounding": "docs/source-grounding.md",
     "transcript_enrichment": "docs/transcript-enrichment-workflow.md",
     "usage_notes": "docs/using-information-objects.md"
@@ -102,19 +123,21 @@
     "Start from the user question or reporting objective.",
     "Retrieve relevant CorpusSegment objects.",
     "Create EvidenceCitation objects before writing narrative claims.",
-    "Render ReportBrief outputs with visible citations and uncertainty where needed."
+    "Render ReportBrief or RAG outputs with visible citations and uncertainty where needed."
   ],
   "schema_version": 1,
   "source_use_rules": [
     "Use generated information objects rather than raw instructional artifacts.",
     "Prefer source segments with stable IDs and citation labels.",
+    "Use RAG index records only when they are marked as public-safe derivatives.",
     "Distinguish direct evidence from inference.",
     "Do not make claims that cannot be traced to supplied source objects."
   ],
   "task_contract": {
     "inputs": [
       "SourceManifestRecord[]",
-      "CorpusSegment[]"
+      "CorpusSegment[]",
+      "RagIndexRecord[]"
     ],
     "outputs": [
       "EvidenceCitation[]",
@@ -126,6 +149,6 @@
       "mark inference and uncertainty",
       "refuse to use private or unsupported context"
     ],
-    "task": "Generate a source-grounded instructional analysis brief."
+    "task": "Generate a source-grounded instructional analysis brief or RAG response."
   }
 }

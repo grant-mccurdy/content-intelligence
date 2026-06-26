@@ -32,9 +32,22 @@ def count_enrichment_packets(path: Path) -> int:
     return len(list(path.glob("*.json"))) if path.exists() else 0
 
 
+def count_rag_records(path: Path) -> int:
+    rag_index = load_json(path, {})
+    return int(rag_index.get("chunk_count") or len(rag_index.get("records", [])))
+
+
+def count_jsonl_records(path: Path) -> int:
+    if not path.exists():
+        return 0
+    return sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+
+
 def build_map(root: Path) -> dict[str, Any]:
     report_brief = load_json(root / "sample_outputs" / "report-brief.json", {})
     evidence = report_brief.get("evidence_citations", [])
+    rag_records = count_rag_records(root / "sample_outputs" / "rag-index.json")
+    vector_records = count_jsonl_records(root / "sample_outputs" / "vector-records.jsonl")
     pipelines = [
         {
             "pipeline": "synthetic_text_sources",
@@ -61,6 +74,16 @@ def build_map(root: Path) -> dict[str, Any]:
             "evidence_citations": 0,
             "report_briefs": 0,
         },
+        {
+            "pipeline": "rag_index",
+            "source_manifest_records": 0,
+            "normalized_artifacts": 0,
+            "corpus_segments": rag_records,
+            "rag_index_records": rag_records,
+            "vector_export_records": vector_records,
+            "evidence_citations": 0,
+            "report_briefs": 0,
+        },
     ]
     return {
         "schema_version": 1,
@@ -73,6 +96,8 @@ def build_map(root: Path) -> dict[str, Any]:
             "CorpusSegment",
             "EvidenceCitation",
             "ReportBrief",
+            "RagIndexRecord",
+            "VectorExportRecord",
         ],
         "pipelines": pipelines,
         "public_safety": {

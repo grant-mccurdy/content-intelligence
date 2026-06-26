@@ -6,7 +6,9 @@
     "TranscriptEnrichmentPacket",
     "CorpusSegment",
     "EvidenceCitation",
-    "ReportBrief"
+    "ReportBrief",
+    "RagIndexRecord",
+    "VectorExportRecord"
   ],
   "object_type": "InformationObjectMap",
   "pipelines": [
@@ -34,6 +36,16 @@
       "pipeline": "ocr_document_cleanup",
       "report_briefs": 0,
       "source_manifest_records": 3
+    },
+    {
+      "corpus_segments": 80,
+      "evidence_citations": 0,
+      "normalized_artifacts": 0,
+      "pipeline": "rag_index",
+      "rag_index_records": 80,
+      "report_briefs": 0,
+      "source_manifest_records": 0,
+      "vector_export_records": 80
     }
   ],
   "public_safety": {

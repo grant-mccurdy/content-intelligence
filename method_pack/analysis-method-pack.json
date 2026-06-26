@@ -2,14 +2,15 @@
   "object_type": "AnalysisMethodPack",
   "schema_version": 1,
   "method_pack_version": "0.1.0",
-  "purpose": "Guide an AI or algorithm in converting instructional information objects into source-grounded analysis and reports.",
+  "purpose": "Guide an AI or algorithm in converting instructional information objects into source-grounded analysis, reports, and RAG responses.",
   "object_families": [
     "SourceManifestRecord",
     "NormalizedArtifact",
     "TranscriptEnrichmentPacket",
     "CorpusSegment",
     "EvidenceCitation",
-    "ReportBrief"
+    "ReportBrief",
+    "RagIndexRecord"
   ],
   "input_contracts": [
     {
@@ -25,21 +26,29 @@
         "CorpusSegment"
       ],
       "use": "Retrieve bounded source-preserving passages for search, synthesis, and report evidence."
+    },
+    {
+      "name": "rag_index",
+      "accepts": [
+        "RagIndexRecord"
+      ],
+      "use": "Retrieve public-safe chunks with citation metadata for source-grounded RAG responses."
     }
   ],
   "output_contracts": [
     {
-      "name": "evidence_first_report",
+      "name": "evidence_first_report_or_response",
       "emits": [
         "EvidenceCitation",
         "ReportBrief"
       ],
-      "use": "Produce concise analysis with every claim tied to cited source segments."
+      "use": "Produce concise analysis or RAG responses with every claim tied to cited source segments."
     }
   ],
   "source_use_rules": [
     "Use generated information objects rather than raw instructional artifacts.",
     "Prefer source segments with stable IDs and citation labels.",
+    "Use RAG index records only when they are marked as public-safe derivatives.",
     "Distinguish direct evidence from inference.",
     "Do not make claims that cannot be traced to supplied source objects."
   ],
@@ -53,7 +62,7 @@
     "Start from the user question or reporting objective.",
     "Retrieve relevant CorpusSegment objects.",
     "Create EvidenceCitation objects before writing narrative claims.",
-    "Render ReportBrief outputs with visible citations and uncertainty where needed."
+    "Render ReportBrief or RAG outputs with visible citations and uncertainty where needed."
   ],
   "privacy_rules": [
     "Do not expose private names, credentials, local paths, or raw transcripts.",
@@ -61,8 +70,11 @@
     "Use synthetic or licensed examples for public demos."
   ],
   "references": {
+    "artifact_to_rag_workflow": "docs/artifact-to-rag-workflow.md",
     "object_model": "docs/information-object-model.md",
     "source_grounding": "docs/source-grounding.md",
+    "rag_architecture": "docs/rag-architecture.md",
+    "evaluation_protocol": "docs/evaluation-protocol.md",
     "cleanup_policy": "docs/cleanup-policy.md",
     "transcript_enrichment": "docs/transcript-enrichment-workflow.md",
     "usage_notes": "docs/using-information-objects.md"

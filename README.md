@@ -1,195 +1,68 @@
 # Content Intelligence
 
-Generalized content intelligence pipeline for turning unstructured instructional
-artifacts into analysis-ready information objects, searchable corpora, and
-source-grounded analytical reports.
+Artifact-to-RAG pipeline for source-grounded instructional intelligence.
 
-Primary artifact: an AI-readable analysis method pack for turning instructional
-information objects into source-grounded reports.
+This repository demonstrates the public-safe version of a private workflow that
+starts with source artifacts and ends with retrieval-ready evidence for a RAG
+assistant. The first private source adapter uses Dropbox API extraction, but the
+public project is intentionally source-agnostic: the same pattern can support
+local folders, Google Drive, Canvas/LMS exports, S3/R2 buckets, or public web
+sources.
 
-This repository is intended to demonstrate the public-safe version of a private workflow originally developed around transcript/corpus construction and analytical reporting. The public version must use sanitized, synthetic, or public-license source material.
+```text
+source adapters
+-> raw artifact inventory
+-> source manifests
+-> conversion and conservative cleaning
+-> public-safety washing
+-> information objects
+-> retrieval-ready chunks
+-> vector index target
+-> source-grounded RAG
+-> evaluation
+```
+
+The committed demo uses synthetic and public-safe material only. Raw lecture
+media, private transcripts, private notes, Dropbox paths, course identifiers,
+and identifying metadata stay outside this public repository.
 
 ## What This Project Demonstrates
 
-- Unstructured text processing
-- Transcript or corpus construction
-- Media-to-transcript ingestion
-- LLM-assisted transcript enrichment
-- OCR cleanup and document-to-corpus ingestion
-- Content extraction
-- Source-grounded analysis
+- Source-adapter design for private artifact extraction
+- Manifest-first provenance and checksum tracking
+- Transcript and OCR/document cleanup workflows
+- Public-safety washing before publication or indexing
 - Analysis-ready information objects
-- AI-assisted analytical workflows
-- Task-specific report generation
-- Reproducible pipeline design
+- Citation-preserving corpus segmentation
+- Retrieval-ready RAG index records
+- Source-grounded report generation
+- AI-readable method packs for bounded agent behavior
+- Validation for schema, privacy, retrieval inputs, and evidence contracts
 
-## Featured Workflow
+## Current Vs Next
 
-The core project pattern is:
-
-```text
-instructional artifacts
--> source manifest records
--> normalized artifacts
--> corpus segments
--> evidence citations
--> report briefs / agent-ready context
-```
-
-See `docs/information-object-model.md` for the object model and `schemas/` for
-public-safe JSON examples.
-
-For a diagrammed walkthrough, see `docs/workflow-diagram.md`.
-
-## Primary Artifact
-
-The canonical artifact is `sample_outputs/analysis-method-pack.json`: an
-AI-readable method pack that tells an agent or algorithm how to consume the
-information objects, cite evidence, preserve uncertainty, and avoid private
-source leakage.
-
-The source method pack lives in `method_pack/` with human-readable companions:
-
-- `method_pack/reporting-rules.md`
-- `method_pack/source-use-policy.md`
-- `method_pack/example-context.md`
+| Layer | Current status |
+| --- | --- |
+| Source adapters | Private Dropbox/source import scripts exist outside this public repo; this repo documents the adapter contract. |
+| Conversion demos | Synthetic transcript, OCR, and source-note examples are implemented. |
+| Information objects | Manifest, corpus, citation, report, method-pack, and RAG index objects are generated and validated. |
+| Retrieval | Keyword search, retrieval-ready `rag-index.json`, and Cloudflare Vectorize export records are implemented. |
+| Vector database | Cloudflare Vectorize is the recommended target; records include model, dimension, collection, and content-hash metadata for loading. |
+| RAG service | The portfolio Worker exposes a Content RAG route that can use Vectorize when configured and falls back to lexical retrieval over the same public-safe index. |
+| Evaluation | Schema, object, privacy, generated-artifact, retrieval-input, vector-export, and Worker retrieval-path validation are implemented; answer-quality evals remain the next quality layer. |
 
 ## Reviewer Path
 
-This repository is designed to be reviewed quickly before running anything.
+1. Read `docs/artifact-to-rag-workflow.md` for the end-to-end architecture.
+2. Read `docs/source-adapters.md` for the generic adapter contract and Dropbox
+   v1 pattern.
+3. Inspect `sample_outputs/rag-index.json` to see the retrieval-ready records.
+4. Inspect `sample_outputs/public-safety-review.json` to see the safety gate.
+5. Read `docs/rag-architecture.md` and `docs/evaluation-protocol.md` for the
+   hybrid vector/lexical serving layer and tests.
+6. Run `make portfolio-demo` to rebuild and validate the public-safe demo.
 
-1. Inspect `sample_outputs/analysis-method-pack.json` to see the final
-   AI-readable method contract.
-2. Read `docs/workflow-diagram.md` to understand how raw instructional artifacts
-   become reusable information objects.
-3. Read `docs/transcript-enrichment-workflow.md` to see the public-safe version
-   of the raw-transcript-to-clean-transcript enrichment pass.
-4. Run `make portfolio-demo` to rebuild the demo artifacts and validate the
-   generated objects.
-5. Inspect `sample_outputs/report-brief.json` and
-   `sample_outputs/information-object-map.json` to see the structured reporting
-   output and object inventory.
-
-## What To Inspect First
-
-- `sample_outputs/analysis-method-pack.json`: AI-readable reporting method contract.
-- `docs/information-object-model.md`: the reusable object model.
-- `docs/using-information-objects.md`: how algorithms, reports, and agents use the objects.
-- `docs/completion-rubric.md`: the portfolio-ready completion criteria.
-- `docs/workflow-diagram.md`: the artifact-to-analysis workflow diagram.
-- `docs/transcript-enrichment-workflow.md`: the simulated OpenAI-style transcript cleanup workflow.
-- `sample_outputs/information-object-map.json`: object counts across all demos.
-- `sample_outputs/report-brief.json`: structured report output with cited evidence.
-- `sample_outputs/cloud_video_transcription/transcript_enrichment_brief.md`: transcript enrichment summary.
-- `demos/cloud_video_transcription/`: staged media-to-corpus simulation.
-- `demos/ocr_document_cleanup/`: OCR cleanup-to-corpus simulation.
-
-### Cloud Video-to-Corpus Ingestion
-
-`docs/cloud-video-transcription-workflow.md` documents a public-safe version of
-a real workflow for turning cloud-hosted instructional videos into cleaned,
-searchable transcript artifacts. The demo uses synthetic filenames and sample
-text, but preserves the transferable engineering pattern:
-
-```text
-cloud video inventory
--> media selection
--> temporary private download
--> audio chunking
--> transcription
--> transcript cleanup / enrichment
--> manifest and corpus-ready artifacts
-```
-
-Run the synthetic demo:
-
-```bash
-python3 demos/cloud_video_transcription/run_demo.py
-```
-
-The demo also writes public-safe enrichment artifacts that simulate an
-OpenAI-style cleanup pass without making a network request:
-
-- `sample_outputs/cloud_video_transcription/transcript_enrichment_brief.md`
-- `sample_outputs/cloud_video_transcription/enrichment_packets/*.json`
-
-### OCR Notes-to-Corpus Cleanup
-
-`demos/ocr_document_cleanup/` demonstrates the adjacent workflow for turning
-OCR text from document images into cleaned, citation-ready corpus records.
-
-```bash
-python3 demos/ocr_document_cleanup/run_demo.py
-```
-
-Build the full object map:
-
-```bash
-make portfolio-demo
-```
-
-## Current Structure
-
-```text
-content-intelligence/
-├── corpus_pipeline/
-│   ├── __init__.py
-│   └── common.py
-├── data/
-│   ├── synthetic/
-│   │   └── source_docs/
-│   └── processed/
-│   └── public_sample/
-├── scripts/
-│   ├── build_manifest.py
-│   ├── build_corpus.py
-│   ├── search_corpus.py
-│   ├── generate_report.py
-│   ├── build_information_object_map.py
-│   └── build_analysis_method_pack.py
-├── demos/
-│   ├── cloud_video_transcription/
-│   └── ocr_document_cleanup/
-├── reports/
-├── sample_outputs/
-├── docs/
-│   ├── information-object-model.md
-│   ├── pipeline-overview.md
-│   ├── workflow-diagram.md
-│   ├── completion-rubric.md
-│   ├── cloud-video-transcription-workflow.md
-│   ├── transcript-enrichment-workflow.md
-│   ├── cleanup-policy.md
-│   ├── using-information-objects.md
-│   ├── source-grounding.md
-│   └── privacy-and-copyright.md
-├── schemas/
-├── method_pack/
-├── screenshots/
-└── README.md
-```
-
-## Quick Demo
-
-The current scaffold is offline and standard-library only.
-
-```bash
-make demo
-make search QUERY="feedback rubric evidence"
-make validate
-make portfolio-demo
-```
-
-If `make` is unavailable, run the same steps directly:
-
-```bash
-python3 scripts/build_manifest.py
-python3 scripts/build_corpus.py
-python3 scripts/generate_report.py
-python3 scripts/search_corpus.py "feedback rubric evidence"
-python3 scripts/build_analysis_method_pack.py
-python3 scripts/validate_information_objects.py
-```
+## Generated Objects
 
 The demo builds:
 
@@ -197,26 +70,73 @@ The demo builds:
 - `data/processed/corpus.json`
 - `sample_outputs/demo-report.md`
 - `sample_outputs/report-brief.json`
+- `sample_outputs/rag-index.json`
+- `sample_outputs/public-safety-review.json`
+- `sample_outputs/vector-records.jsonl`
+- `sample_outputs/information-object-map.json`
 - `sample_outputs/analysis-method-pack.json`
 
-Generated outputs are reproducible and intentionally ignored where appropriate.
-The committed sources use synthetic public-safe notes only.
+The canonical method contract is `sample_outputs/analysis-method-pack.json`.
+It tells an agent or algorithm how to retrieve source objects, cite evidence,
+preserve uncertainty, and avoid private source leakage.
+
+## Quick Demo
+
+The public scaffold is offline and standard-library only.
+
+```bash
+make portfolio-demo
+make search QUERY="feedback rubric evidence"
+```
+
+Direct Python equivalent:
+
+```bash
+python3 scripts/build_manifest.py
+python3 scripts/build_corpus.py
+python3 scripts/generate_report.py
+python3 demos/cloud_video_transcription/run_demo.py
+python3 demos/ocr_document_cleanup/run_demo.py
+python3 scripts/build_rag_index.py
+python3 scripts/export_vector_records.py
+python3 scripts/build_information_object_map.py
+python3 scripts/build_analysis_method_pack.py
+python3 scripts/validate_information_objects.py
+```
+
+## Project Structure
+
+```text
+content-intelligence/
+├── corpus_pipeline/
+├── data/
+├── demos/
+│   ├── cloud_video_transcription/
+│   └── ocr_document_cleanup/
+├── docs/
+│   ├── artifact-to-rag-workflow.md
+│   ├── source-adapters.md
+│   ├── rag-architecture.md
+│   └── evaluation-protocol.md
+├── method_pack/
+├── reports/
+├── sample_outputs/
+├── schemas/
+└── scripts/
+```
 
 ## Public Safety Rules
 
-Do not publish professor names, university course identifiers, private LMS links, copyrighted transcripts, raw lecture text, video URLs, private lecture manifests, or coursework-specific prompts.
+Do not publish professor names, university course identifiers, private LMS
+links, copyrighted transcripts, raw lecture text, video URLs, private lecture
+manifests, private Dropbox paths, credentials, or coursework-specific prompts.
 
-Public examples should use synthetic transcripts or public-domain/public-license documents with clear source attribution.
+Public examples should use synthetic transcripts, synthetic notes,
+public-domain material, permissively licensed material, or manually reviewed
+public-safe derivatives.
 
 ## Portfolio Framing
 
-This project should emphasize the transferable pipeline: ingest, normalize,
-segment, retrieve, cite, and report. The value is converting messy instructional
-artifacts into reusable information objects, not the private course context.
-
-## Status
-
-Portfolio-ready public scaffold implemented with synthetic input data, manifest
-creation, corpus segmentation, staged media and OCR demos, transparent keyword
-retrieval, simulated transcript enrichment, source-grounded reporting, an
-AI-readable method pack, and validation for generated information objects.
+The value is not a chatbot alone. The value is the system that converts messy
+instructional artifacts into safe, auditable, retrievable evidence objects and
+then serves those objects through a bounded RAG interface.

@@ -9,6 +9,15 @@ A search step consumes `CorpusSegment` objects. It can rank segments by keyword,
 embedding similarity, tags, or any other retrieval method while preserving
 `segment_id`, `source_id`, and `citation`.
 
+## RAG Index
+
+A RAG serving layer should consume `RagIndexRecord` objects. These records keep
+the source citation fields from `CorpusSegment`, then add public-safety,
+licensing, source visibility, and retrieval metadata for vector indexing.
+
+The RAG layer should answer only from retrieved records. If records do not
+support the question, it should state the gap and offer a supported follow-up.
+
 ## Report Generator
 
 A report generator consumes retrieved segments and emits `EvidenceCitation`
@@ -22,6 +31,7 @@ typical context package would include:
 
 - the user question or task
 - a small set of `CorpusSegment` objects
+- relevant `RagIndexRecord` objects for retrieval-backed answers
 - prior `EvidenceCitation` objects when available
 - public-safety or source-use constraints
 
