@@ -21,17 +21,30 @@ method packs, and object validation.
 - Schema validation for all information objects.
 - Public-safety review must pass with zero forbidden pattern hits.
 - RAG index record count must match source corpus segments.
+- The RAG index must include a deterministic corpus fingerprint.
 - Every RAG index record must include domain, collection, citation label,
-  public-safety level, content hash, embedding model, and embedding dimensions.
+  direct source provenance, public-safety level, content hash, embedding model,
+  dimensions, and pooling mode.
 - Every vector export record must include `embedding_text`, answerable text,
-  citation metadata, collection metadata, model metadata, and the approved
+  direct source provenance, citation metadata, collection metadata, model and
+  pooling metadata, the release corpus fingerprint, and the approved
   public-safety level.
 - Reports must cite retrieved evidence.
 - Generated outputs must not contain high-confidence secrets or private paths.
 
 ## Retrieval Evals
 
-The next evaluation layer should add fixture questions with expected source ids:
+`evals/retrieval-cases.json` defines fixture questions with expected source ids
+for workflow, format-boundary, safety, evaluation, and object-model questions.
+Run them with:
+
+```bash
+make eval
+```
+
+The serving release gate adds deterministic refusal, unsupported-scope, corpus
+parity, direct-link, latency, and generated-citation checks. Additional fixture
+coverage can expand to:
 
 - What does the pipeline do?
 - How are transcripts cleaned?

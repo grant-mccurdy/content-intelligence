@@ -17,11 +17,16 @@ record includes:
 - source visibility
 - license status
 - corpus version and content hash
-- embedding model and embedding dimensions
+- embedding model, dimensions, and pooling mode
+- repository-relative source path and direct public source URL
 - text
 - retrieval metadata
 
 These records can be embedded and loaded into a vector database.
+
+The current export uses `@cf/baai/bge-base-en-v1.5` with `cls` pooling. Document
+and query embeddings must use the same pooling mode. The top-level corpus
+fingerprint lets live release checks reject stale serving bundles.
 
 `sample_outputs/vector-records.jsonl` exports the same public-safe records in a
 line-oriented shape suitable for an embedding/upsert job:
@@ -30,10 +35,11 @@ line-oriented shape suitable for an embedding/upsert job:
 - `embedding_text`: title, collection, source metadata, keywords, and body text
   used by the embedding job
 - `text`: answerable public-safe body text
-- `metadata`: source, citation, safety, license, pipeline, collection, model,
-  dimension, content-hash, and keyword fields
+- `metadata`: source path and URL, citation, safety, license, pipeline,
+  collection, model, dimension, pooling, corpus fingerprint, content-hash, and
+  keyword fields
 
-## Recommended V1 Stack
+## Recommended Serving Stack
 
 - Vector database: Cloudflare Vectorize
 - Runtime: Cloudflare Worker
@@ -72,3 +78,7 @@ collections. The portfolio Worker has a Content RAG route over the generated
 index. When the `CONTENT_RAG_VECTOR_INDEX` and `AI` bindings are configured,
 the route can run hybrid vector-plus-lexical retrieval; otherwise it falls back
 to lexical retrieval over the same public-safe records.
+
+`serving/content-rag-core.mjs` is the public source of truth for the portable
+serving logic. The private deployment bundle copies that module and supplies
+Cloudflare/OpenAI bindings, credentials, CORS, rate limiting, and transport.

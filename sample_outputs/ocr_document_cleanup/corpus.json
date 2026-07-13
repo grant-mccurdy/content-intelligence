@@ -7,7 +7,7 @@
       "segment_id": "synthetic-notes#p001",
       "source_id": "synthetic-notes",
       "source_type": "ocr_notes",
-      "text": "Topic: Source grounded reporting\\n\\nA manifest records each source file, checksum, and processing status. The report should cite the segment that supports each claim.",
+      "text": "Topic: Source grounded reporting\n\nA manifest records each source file, checksum, and processing status. The report should cite the segment that supports each claim.",
       "title": "Synthetic Seminar Board Notes"
     },
     {
@@ -15,7 +15,7 @@
       "segment_id": "synthetic-notes#p002",
       "source_id": "synthetic-notes",
       "source_type": "ocr_notes",
-      "text": "Topic: Conservative cleanup\\n\\nCleanup may fix obvious OCR errors and spacing, but it must not invent missing details. If a formula or term is [unclear], keep the marker.",
+      "text": "Topic: Conservative cleanup\n\nCleanup may fix obvious OCR errors and spacing, but it must not invent missing details. If a formula or term is [unclear], keep the marker.",
       "title": "Synthetic Seminar Board Notes"
     },
     {
@@ -23,7 +23,7 @@
       "segment_id": "synthetic-notes#p003",
       "source_id": "synthetic-notes",
       "source_type": "ocr_notes",
-      "text": "Topic: Corpus preparation\\n\\nAfter review, cleaned notes become short corpus segments with stable citations for retrieval and reporting.",
+      "text": "Topic: Corpus preparation\n\nAfter review, cleaned notes become short corpus segments with stable citations for retrieval and reporting.",
       "title": "Synthetic Seminar Board Notes"
     }
   ]

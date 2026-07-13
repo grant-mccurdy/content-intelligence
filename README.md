@@ -3,6 +3,13 @@
 Artifact-to-RAG pipeline for turning disparate source material into
 provenance-rich information objects and source-grounded answers.
 
+## Project Links
+
+- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)
+- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
+- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
+- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
+
 The public workflow standardizes synthetic text, transcript-derived, and
 OCR-derived content into one auditable object chain:
 
@@ -15,15 +22,6 @@ source inventory
 -> retrieval index and vector records
 -> hybrid RAG answer with citations and limits
 ```
-
-## Start Here
-
-- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)
-- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
-- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
-- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
-
-![Live Content Intelligence RAG response](screenshots/live-rag-cited-answer.png)
 
 The live public service retrieves from safety-reviewed method and evidence
 records, combines vector and lexical results, returns source links, and states
@@ -43,7 +41,7 @@ input support:
 | PDF, DOCX, and HTML conversion | Adapter contract documented; direct public converters are deferred. |
 | Cloud and LMS sources | Dropbox pattern documented from a private prototype; public Google Drive, Canvas, S3/R2, and web adapters are deferred. |
 | Retrieval | Local lexical search plus a public hybrid vector/lexical RAG service. |
-| Evaluation | Deterministic schema, privacy, citation, retrieval-input, vector-export, and serving-path checks; answer-quality fixtures are deferred. |
+| Evaluation | Deterministic schema, privacy, citation, retrieval-input, vector-export, retrieval-fixture, and serving-path checks; live answer checks run in the serving release gate. |
 
 The public demo does not claim to ingest arbitrary file formats. It proves the
 normalization, provenance, safety, retrieval, and reporting contracts that
@@ -67,7 +65,8 @@ between scripts:
 - `AnalysisMethodPack`
 
 Stable source IDs, checksums, citations, transformation status, safety levels,
-content hashes, and embedding metadata keep downstream outputs traceable.
+content hashes, direct public source links, corpus fingerprints, and embedding
+metadata keep downstream outputs traceable.
 
 ### Public-safety gates before retrieval
 
@@ -78,7 +77,8 @@ codes, and unreviewed source boundaries before vector export.
 ### Source-grounded RAG
 
 `sample_outputs/rag-index.json` and `sample_outputs/vector-records.jsonl`
-contain the same reviewed records used by the serving pattern. The public
+contain the same reviewed records used by the serving pattern and declare BGE
+`cls` pooling explicitly. The public
 portfolio Worker supports hybrid vector-plus-lexical retrieval when Cloudflare
 bindings are available and a lexical fallback over the same bounded corpus.
 
@@ -89,6 +89,12 @@ Every answer should:
 - state when the corpus is insufficient;
 - refuse requests for raw private artifacts or credentials;
 - offer follow-up questions supported by the indexed material.
+
+The portable logic used by the deployment bundle is inspectable in
+`serving/content-rag-core.mjs`. It defines the public request classifier, query
+expansion, hybrid rank fusion, Responses API request contract, prompt/source
+fencing, and citation validator. Provider credentials and unrelated private
+backend routes remain outside this public repository.
 
 ## Rebuild The Public Demo
 
@@ -107,6 +113,8 @@ make search QUERY="feedback rubric evidence"
 - the RAG index and vector export;
 - the information-object map and method pack;
 - the generated public-safety review.
+- five deterministic retrieval fixtures with expected source records.
+- the public serving-core contract tests.
 
 Run syntax and object validation directly:
 
@@ -115,6 +123,7 @@ python3 -m py_compile corpus_pipeline/*.py scripts/*.py \
   demos/cloud_video_transcription/run_demo.py \
   demos/ocr_document_cleanup/run_demo.py
 make validate
+make eval
 ```
 
 ## Reviewer Path
@@ -123,8 +132,9 @@ make validate
 2. Inspect `sample_outputs/rag-index.json` for retrieval records and citations.
 3. Inspect `sample_outputs/public-safety-review.json` for the release gate.
 4. Read `docs/artifact-to-rag-workflow.md` for the end-to-end architecture.
-5. Read `docs/evaluation-protocol.md` for deterministic and planned quality checks.
-6. Run `make portfolio-demo` to reproduce the committed public outputs.
+5. Inspect `serving/content-rag-core.mjs` for the live route's portable logic.
+6. Read `docs/evaluation-protocol.md` for deterministic and live quality checks.
+7. Run `make portfolio-demo` to reproduce the committed public outputs.
 
 ## Repository Layout
 
@@ -153,7 +163,9 @@ index.
 ## Current Status
 
 The public repository builds validated retrieval and vector-export records, and
-the portfolio site exposes a working hybrid RAG interface over the public-safe
-corpus. The highest-value next feature is genuine PDF, DOCX, HTML, Markdown, and
-text conversion into the existing `NormalizedArtifact` contract, followed by a
-fixture-based retrieval and answer evaluation suite.
+the portfolio site exposes a working cited RAG interface over the public-safe
+corpus. Local release gates include retrieval fixtures, serving-path tests,
+generated-answer checks, and corpus-parity validation. The highest-value next
+feature is genuine PDF, DOCX, HTML, Markdown, and text conversion into the
+existing `NormalizedArtifact` contract, followed by broader fixture coverage
+and the synchronized `v2` deployment.

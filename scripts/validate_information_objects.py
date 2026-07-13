@@ -33,12 +33,15 @@ REQUIRED_FIELDS = {
         "title",
         "source_type",
         "citation",
+        "source_path",
+        "source_url",
         "text",
         "collection",
         "domain",
         "content_hash",
         "embedding_model",
         "embedding_dimensions",
+        "embedding_pooling",
         "artifact_pipeline",
         "public_safety_level",
         "embedding_status",
@@ -211,6 +214,14 @@ def validate_rag_index(path: Path, errors: list[str]) -> int:
             errors.append(f"{path}: record {idx} must declare domain content_intelligence")
         if record.get("collection") not in {"evidence", "method"}:
             errors.append(f"{path}: record {idx} collection must be evidence or method")
+        if record.get("embedding_pooling") != "cls":
+            errors.append(f"{path}: record {idx} embedding_pooling must be cls")
+        if Path(str(record.get("source_path", ""))).is_absolute():
+            errors.append(f"{path}: record {idx} source_path must be repository-relative")
+        if not str(record.get("source_url", "")).startswith(
+            "https://github.com/grant-mccurdy/content-intelligence/blob/main/"
+        ):
+            errors.append(f"{path}: record {idx} source_url must link to the public repository")
     expected_count = rag_index.get("chunk_count")
     if expected_count is not None and int(expected_count) != len(records):
         errors.append(f"{path}: chunk_count {expected_count} does not match {len(records)} records")
@@ -261,6 +272,13 @@ def validate_vector_records(path: Path, errors: list[str]) -> int:
                 errors.append(f"{path}: line {idx} unexpected embedding model")
             if metadata.get("embedding_dimensions") != 768:
                 errors.append(f"{path}: line {idx} unexpected embedding dimensions")
+            if metadata.get("embedding_pooling") != "cls":
+                errors.append(f"{path}: line {idx} embedding_pooling must be cls")
+            fingerprint = str(metadata.get("corpus_fingerprint", ""))
+            if len(fingerprint) != 64 or any(character not in "0123456789abcdef" for character in fingerprint):
+                errors.append(f"{path}: line {idx} invalid corpus fingerprint")
+            if not metadata.get("source_path") or not metadata.get("source_url"):
+                errors.append(f"{path}: line {idx} missing direct source provenance")
             count += 1
     if count == 0:
         errors.append(f"{path}: no vector records found")
