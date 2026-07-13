@@ -1,8 +1,8 @@
 {
-  "chunk_count": 80,
+  "chunk_count": 85,
   "collections": {
     "evidence": 20,
-    "method": 60
+    "method": 65
   },
   "description": "Public-safe retrieval-ready records for the artifact-to-RAG demo.",
   "embedding_dimensions": 768,
@@ -735,7 +735,7 @@
       "chunk_id": "method:readme#01",
       "citation": "Content Intelligence README, section 1",
       "collection": "method",
-      "content_hash": "fc5da72e47c88f80c41910f04b41cfe0eb6b6a73dea348769c26d34e595c661e",
+      "content_hash": "d40c4b4f1379416d19c495889ec3a7b36f4d93d311f7220c00e9a06bfd10f59a",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -746,16 +746,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 501,
+        "character_count": 524,
         "keywords": [
           "source",
+          "artifact",
+          "content",
+          "derived",
+          "into",
           "public",
-          "intelligence",
-          "private",
           "rag",
-          "adapter",
-          "agnostic",
-          "api"
+          "text"
         ]
       },
       "schema_version": 1,
@@ -763,7 +763,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "# Content Intelligence\n\nArtifact-to-RAG pipeline for source-grounded instructional intelligence.\n\nThis repository demonstrates the public-safe version of a private workflow that\nstarts with source artifacts and ends with retrieval-ready evidence for a RAG\nassistant. The first private source adapter uses Dropbox API extraction, but the\npublic project is intentionally source-agnostic: the same pattern can support\nlocal folders, Google Drive, Canvas/LMS exports, S3/R2 buckets, or public web\nsources.",
+      "text": "# Content Intelligence\n\nArtifact-to-RAG pipeline for turning disparate source material into\nprovenance-rich information objects and source-grounded answers.\n\nThe public workflow standardizes synthetic text, transcript-derived, and\nOCR-derived content into one auditable object chain:\n\n```text\nsource inventory\n-> manifest and checksum\n-> normalized artifact\n-> citation-preserving corpus segments\n-> public-safety review\n-> retrieval index and vector records\n-> hybrid RAG answer with citations and limits\n```\n\n## Start Here",
       "title": "Content Intelligence README"
     },
     {
@@ -771,7 +771,7 @@
       "chunk_id": "method:readme#02",
       "citation": "Content Intelligence README, section 2",
       "collection": "method",
-      "content_hash": "ee4a48a4d29d1e2fd3993016ebbe1125e830dec4c2b99aa67b9199ed33965e35",
+      "content_hash": "f55561f9f61cf943715c3dffd19abcc250f2513884eeb1194d1abc2f17f46b5e",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -782,16 +782,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 500,
+        "character_count": 512,
         "keywords": [
-          "public",
-          "source",
-          "private",
-          "raw",
-          "this",
-          "adapters",
-          "artifact",
-          "chunks"
+          "content",
+          "intelligence",
+          "github",
+          "grant",
+          "html",
+          "https",
+          "live",
+          "mccurdy"
         ]
       },
       "schema_version": 1,
@@ -799,7 +799,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "```text\nsource adapters\n-> raw artifact inventory\n-> source manifests\n-> conversion and conservative cleaning\n-> public-safety washing\n-> information objects\n-> retrieval-ready chunks\n-> vector index target\n-> source-grounded RAG\n-> evaluation\n```\n\nThe committed demo uses synthetic and public-safe material only. Raw lecture\nmedia, private transcripts, private notes, Dropbox paths, course identifiers,\nand identifying metadata stay outside this public repository.\n\n## What This Project Demonstrates",
+      "text": "- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)\n- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)\n- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)\n- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)\n\n![Live Content Intelligence RAG response](screenshots/live-rag-cited-answer.png)",
       "title": "Content Intelligence README"
     },
     {
@@ -807,7 +807,7 @@
       "chunk_id": "method:readme#03",
       "citation": "Content Intelligence README, section 3",
       "collection": "method",
-      "content_hash": "b0a4679547fa4648424a72fc63e690896ed399f20798d9933f08d9966c08d8b8",
+      "content_hash": "9ffbd331d8cd121ad9e576e0faeac0138420d170cbd640122612f1bcc527b84d",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -818,16 +818,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 508,
+        "character_count": 320,
         "keywords": [
-          "ready",
-          "retrieval",
-          "source",
-          "adapter",
-          "agent",
-          "analysis",
-          "artifact",
-          "before"
+          "implemented",
+          "about",
+          "combines",
+          "corpus",
+          "deliberately",
+          "evidence",
+          "extensible",
+          "indexed"
         ]
       },
       "schema_version": 1,
@@ -835,7 +835,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "- Source-adapter design for private artifact extraction\n- Manifest-first provenance and checksum tracking\n- Transcript and OCR/document cleanup workflows\n- Public-safety washing before publication or indexing\n- Analysis-ready information objects\n- Citation-preserving corpus segmentation\n- Retrieval-ready RAG index records\n- Source-grounded report generation\n- AI-readable method packs for bounded agent behavior\n- Validation for schema, privacy, retrieval inputs, and evidence contracts\n\n## Current Vs Next",
+      "text": "The live public service retrieves from safety-reviewed method and evidence\nrecords, combines vector and lexical results, returns source links, and states\nits limits when the indexed corpus is insufficient.\n\n## What Is Implemented\n\nThe repository is deliberately precise about implemented versus extensible\ninput support:",
       "title": "Content Intelligence README"
     },
     {
@@ -843,7 +843,7 @@
       "chunk_id": "method:readme#04",
       "citation": "Content Intelligence README, section 4",
       "collection": "method",
-      "content_hash": "c1511751ebd2d4a48512b9f4d96707841b35dba930dbe07625b11b57a21a39e9",
+      "content_hash": "fcec4b85a2ef58398e55d4f91695e85d3edf312b525f685d70b2d835512e521b",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -854,16 +854,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 516,
+        "character_count": 566,
         "keywords": [
-          "source",
-          "implemented",
-          "index",
+          "public",
+          "text",
+          "corpus",
+          "derived",
+          "direct",
           "objects",
-          "rag",
-          "repo",
-          "retrieval",
-          "this"
+          "ocr",
+          "retrieval"
         ]
       },
       "schema_version": 1,
@@ -871,7 +871,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "| Layer | Current status |\n| --- | --- |\n| Source adapters | Private Dropbox/source import scripts exist outside this public repo; this repo documents the adapter contract.\n\n|\n| Conversion demos | Synthetic transcript, OCR, and source-note examples are implemented.\n\n|\n| Information objects | Manifest, corpus, citation, report, method-pack, and RAG index objects are generated and validated.\n\n|\n| Retrieval | Keyword search, retrieval-ready `rag-index.json`, and Cloudflare Vectorize export records are implemented.",
+      "text": "| Input or layer | Public implementation |\n| --- | --- |\n| Plain text | Direct manifesting, normalization, segmentation, retrieval, and reporting.\n\n|\n| Transcript-derived text | Synthetic staged media/transcript workflow with enrichment packets and cleaned corpus objects.\n\n|\n| OCR-derived text | Synthetic page-level OCR cleanup workflow with normalized output and corpus objects.\n\n|\n| Markdown documentation | Chunked as public method evidence for retrieval.\n\n|\n| PDF, DOCX, and HTML conversion | Adapter contract documented; direct public converters are deferred.",
       "title": "Content Intelligence README"
     },
     {
@@ -879,7 +879,7 @@
       "chunk_id": "method:readme#05",
       "citation": "Content Intelligence README, section 5",
       "collection": "method",
-      "content_hash": "076e4209117556378f6fae0966d1e7227d9b8deba266b7f4a835ba996ec6daa7",
+      "content_hash": "58f6ee99b68a0f2fe4c97b4b56006833681f9711a1bee99bb76c80d8dda7b04f",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -890,16 +890,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 552,
+        "character_count": 613,
         "keywords": [
+          "public",
           "retrieval",
-          "content",
-          "path",
-          "quality",
-          "rag",
+          "deferred",
+          "lexical",
+          "proves",
           "vector",
-          "vectorize",
-          "worker"
+          "adapters",
+          "answer"
         ]
       },
       "schema_version": 1,
@@ -907,7 +907,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "|\n| Vector database | Cloudflare Vectorize is the recommended target; records include model, dimension, collection, and content-hash metadata for loading.\n\n|\n| RAG service | The portfolio Worker exposes a Content RAG route that can use Vectorize when configured and falls back to lexical retrieval over the same public-safe index.\n\n|\n| Evaluation | Schema, object, privacy, generated-artifact, retrieval-input, vector-export, and Worker retrieval-path validation are implemented; answer-quality evals remain the next quality layer.\n\n|\n\n## Reviewer Path",
+      "text": "|\n| Cloud and LMS sources | Dropbox pattern documented from a private prototype; public Google Drive, Canvas, S3/R2, and web adapters are deferred.\n\n|\n| Retrieval | Local lexical search plus a public hybrid vector/lexical RAG service.\n\n|\n| Evaluation | Deterministic schema, privacy, citation, retrieval-input, vector-export, and serving-path checks; answer-quality fixtures are deferred.\n\n|\n\nThe public demo does not claim to ingest arbitrary file formats. It proves the\nnormalization, provenance, safety, retrieval, and reporting contracts that\nformat-specific converters can target.\n\n## What The Project Proves",
       "title": "Content Intelligence README"
     },
     {
@@ -915,7 +915,7 @@
       "chunk_id": "method:readme#06",
       "citation": "Content Intelligence README, section 6",
       "collection": "method",
-      "content_hash": "874b3ef80ee99a0cb4326b2f6257a0c238533f289bdd7bbf0c7a2c4ba1885d4a",
+      "content_hash": "938407f030e5c4f5cdd6342e39064be7ec6e16fea3f83c79c5aff41568a3e309",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -926,16 +926,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 568,
+        "character_count": 533,
         "keywords": [
-          "docs",
-          "demo",
-          "rag",
-          "read",
-          "architecture",
-          "end",
-          "inspect",
-          "json"
+          "object",
+          "safety",
+          "analysismethodpack",
+          "before",
+          "between",
+          "checksums",
+          "citations",
+          "content"
         ]
       },
       "schema_version": 1,
@@ -943,7 +943,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "1. Read `docs/artifact-to-rag-workflow.md` for the end-to-end architecture.\n2. Read `docs/source-adapters.md` for the generic adapter contract and Dropbox\n   v1 pattern.\n3. Inspect `sample_outputs/rag-index.json` to see the retrieval-ready records.\n4. Inspect `sample_outputs/public-safety-review.json` to see the safety gate.\n5. Read `docs/rag-architecture.md` and `docs/evaluation-protocol.md` for the\n   hybrid vector/lexical serving layer and tests.\n6. Run `make portfolio-demo` to rebuild and validate the public-safe demo.\n\n## Generated Objects\n\nThe demo builds:",
+      "text": "### A standard information-object model\n\nEach stage emits a small structured object rather than passing ad hoc raw files\nbetween scripts:\n\n- `SourceManifestRecord`\n- `NormalizedArtifact`\n- `TranscriptEnrichmentPacket`\n- `CorpusSegment`\n- `RagIndexRecord`\n- `VectorExportRecord`\n- `EvidenceCitation`\n- `ReportBrief`\n- `AnalysisMethodPack`\n\nStable source IDs, checksums, citations, transformation status, safety levels,\ncontent hashes, and embedding metadata keep downstream outputs traceable.\n\n### Public-safety gates before retrieval",
       "title": "Content Intelligence README"
     },
     {
@@ -951,7 +951,7 @@
       "chunk_id": "method:readme#07",
       "citation": "Content Intelligence README, section 7",
       "collection": "method",
-      "content_hash": "14cae8c92a7b53640de1b95259b963394c7b5417699473784c9da4da71e63722",
+      "content_hash": "75f5e202d0d576d757d388e5eac4354d59dcbba882d60b1f8faddaee9e771b69",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -962,16 +962,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 631,
+        "character_count": 574,
         "keywords": [
-          "json",
+          "private",
+          "records",
+          "vector",
+          "lexical",
           "outputs",
-          "sample",
-          "method",
-          "analysis",
-          "data",
-          "demo",
-          "pack"
+          "rag",
+          "retrieval",
+          "same"
         ]
       },
       "schema_version": 1,
@@ -979,7 +979,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "- `data/processed/manifest.json`\n- `data/processed/corpus.json`\n- `sample_outputs/demo-report.md`\n- `sample_outputs/report-brief.json`\n- `sample_outputs/rag-index.json`\n- `sample_outputs/public-safety-review.json`\n- `sample_outputs/vector-records.jsonl`\n- `sample_outputs/information-object-map.json`\n- `sample_outputs/analysis-method-pack.json`\n\nThe canonical method contract is `sample_outputs/analysis-method-pack.json`.\nIt tells an agent or algorithm how to retrieve source objects, cite evidence,\npreserve uncertainty, and avoid private source leakage.\n\n## Quick Demo\n\nThe public scaffold is offline and standard-library only.",
+      "text": "Raw private artifacts are not valid retrieval inputs. The build checks generated\nrecords for private paths, identifying data, credential patterns, private course\ncodes, and unreviewed source boundaries before vector export.\n\n### Source-grounded RAG\n\n`sample_outputs/rag-index.json` and `sample_outputs/vector-records.jsonl`\ncontain the same reviewed records used by the serving pattern. The public\nportfolio Worker supports hybrid vector-plus-lexical retrieval when Cloudflare\nbindings are available and a lexical fallback over the same bounded corpus.\n\nEvery answer should:",
       "title": "Content Intelligence README"
     },
     {
@@ -987,7 +987,7 @@
       "chunk_id": "method:readme#08",
       "citation": "Content Intelligence README, section 8",
       "collection": "method",
-      "content_hash": "a90372cff76c8586a77140ce345e22e02e32eb1268c5522f027c24b5c0dc76d9",
+      "content_hash": "adae3d0cce5e1dcc2bd92bce5efb62149d44cea792eeab11fb5cea0033175d42",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -998,16 +998,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 556,
+        "character_count": 470,
         "keywords": [
-          "python3",
-          "scripts",
-          "build",
           "demo",
+          "make",
+          "evidence",
+          "portfolio",
+          "artifacts",
           "bash",
-          "demos",
-          "information",
-          "make"
+          "cite",
+          "claims"
         ]
       },
       "schema_version": 1,
@@ -1015,7 +1015,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "```bash\nmake portfolio-demo\nmake search QUERY=\"feedback rubric evidence\"\n```\n\nDirect Python equivalent:\n\n```bash\npython3 scripts/build_manifest.py\npython3 scripts/build_corpus.py\npython3 scripts/generate_report.py\npython3 demos/cloud_video_transcription/run_demo.py\npython3 demos/ocr_document_cleanup/run_demo.py\npython3 scripts/build_rag_index.py\npython3 scripts/export_vector_records.py\npython3 scripts/build_information_object_map.py\npython3 scripts/build_analysis_method_pack.py\npython3 scripts/validate_information_objects.py\n```\n\n## Project Structure",
+      "text": "- cite the records supporting substantive claims;\n- distinguish evidence from inference;\n- state when the corpus is insufficient;\n- refuse requests for raw private artifacts or credentials;\n- offer follow-up questions supported by the indexed material.\n\n## Rebuild The Public Demo\n\nThe local pipeline uses Python and keeps the core demo offline:\n\n```bash\nmake portfolio-demo\nmake search QUERY=\"feedback rubric evidence\"\n```\n\n`make portfolio-demo` rebuilds and validates:",
       "title": "Content Intelligence README"
     },
     {
@@ -1023,7 +1023,7 @@
       "chunk_id": "method:readme#09",
       "citation": "Content Intelligence README, section 9",
       "collection": "method",
-      "content_hash": "dcffddee69d5bba11e4768d53fffd7c2c84cf1099fa137e21074fab144216ce3",
+      "content_hash": "2542d086a9b8d01e7b46f655cf3f4dc70f63f805fb39508e4bbfc885cfc90630",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -1034,16 +1034,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 605,
+        "character_count": 480,
         "keywords": [
-          "private",
-          "lecture",
-          "rag",
-          "text",
-          "video",
-          "adapters",
-          "architecture",
-          "artifact"
+          "demo",
+          "run",
+          "corpus",
+          "demos",
+          "object",
+          "ocr",
+          "report",
+          "bash"
         ]
       },
       "schema_version": 1,
@@ -1051,7 +1051,7 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "```text\ncontent-intelligence/\n\u251c\u2500\u2500 corpus_pipeline/\n\u251c\u2500\u2500 data/\n\u251c\u2500\u2500 demos/\n\u2502   \u251c\u2500\u2500 cloud_video_transcription/\n\u2502   \u2514\u2500\u2500 ocr_document_cleanup/\n\u251c\u2500\u2500 docs/\n\u2502   \u251c\u2500\u2500 artifact-to-rag-workflow.md\n\u2502   \u251c\u2500\u2500 source-adapters.md\n\u2502   \u251c\u2500\u2500 rag-architecture.md\n\u2502   \u2514\u2500\u2500 evaluation-protocol.md\n\u251c\u2500\u2500 method_pack/\n\u251c\u2500\u2500 reports/\n\u251c\u2500\u2500 sample_outputs/\n\u251c\u2500\u2500 schemas/\n\u2514\u2500\u2500 scripts/\n```\n\n## Public Safety Rules\n\nDo not publish professor names, university course identifiers, private LMS\nlinks, copyrighted transcripts, raw lecture text, video URLs, private lecture\nmanifests, private Dropbox paths, credentials, or coursework-specific prompts.",
+      "text": "- source manifests and corpus segments;\n- transcript and OCR demonstration objects;\n- the cited demo report and report brief;\n- the RAG index and vector export;\n- the information-object map and method pack;\n- the generated public-safety review.\n\nRun syntax and object validation directly:\n\n```bash\npython3 -m py_compile corpus_pipeline/*.py scripts/*.py \\\n  demos/cloud_video_transcription/run_demo.py \\\n  demos/ocr_document_cleanup/run_demo.py\nmake validate\n```\n\n## Reviewer Path",
       "title": "Content Intelligence README"
     },
     {
@@ -1059,7 +1059,7 @@
       "chunk_id": "method:readme#10",
       "citation": "Content Intelligence README, section 10",
       "collection": "method",
-      "content_hash": "dd71b5bf09f4b0921fd32a0e76eda1ae5998e8c5f6ea3b9b893bb041db3f7f50",
+      "content_hash": "229ba20650018dd775ddcd53af45a90769ca149465d99b8687a7656f81c1967d",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -1070,16 +1070,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 407,
+        "character_count": 460,
         "keywords": [
-          "public",
-          "material",
-          "objects",
-          "safe",
-          "synthetic",
-          "value",
-          "alone",
-          "artifacts"
+          "outputs",
+          "rag",
+          "docs",
+          "end",
+          "inspect",
+          "json",
+          "portfolio",
+          "public"
         ]
       },
       "schema_version": 1,
@@ -1087,7 +1087,115 @@
       "source_id": "readme",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "Public examples should use synthetic transcripts, synthetic notes,\npublic-domain material, permissively licensed material, or manually reviewed\npublic-safe derivatives.\n\n## Portfolio Framing\n\nThe value is not a chatbot alone. The value is the system that converts messy\ninstructional artifacts into safe, auditable, retrievable evidence objects and\nthen serves those objects through a bounded RAG interface.",
+      "text": "1. Try the live RAG presets on the portfolio page.\n2. Inspect `sample_outputs/rag-index.json` for retrieval records and citations.\n3. Inspect `sample_outputs/public-safety-review.json` for the release gate.\n4. Read `docs/artifact-to-rag-workflow.md` for the end-to-end architecture.\n5. Read `docs/evaluation-protocol.md` for deterministic and planned quality checks.\n6. Run `make portfolio-demo` to reproduce the committed public outputs.\n\n## Repository Layout",
+      "title": "Content Intelligence README"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:readme#11",
+      "citation": "Content Intelligence README, section 11",
+      "collection": "method",
+      "content_hash": "34fc697f62f5702d439e809f20d37fb434858345b5ac287e2f0342b923556b2b",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 685,
+        "keywords": [
+          "architecture",
+          "contracts",
+          "source",
+          "bounded",
+          "build",
+          "commands",
+          "content",
+          "corpus"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "readme#11",
+      "source_id": "readme",
+      "source_type": "public method documentation",
+      "source_visibility": "public_repo_documentation",
+      "text": "```text\ncontent-intelligence/\n|-- corpus_pipeline/   # Shared normalization and tokenization helpers\n|-- data/synthetic/    # Public-safe source fixtures\n|-- demos/             # Transcript and OCR-derived workflow simulations\n|-- docs/              # Architecture, contracts, safety, and evaluation\n|-- method_pack/       # Bounded source-use and reporting rules\n|-- reports/           # Current architecture and deployment status\n|-- sample_outputs/    # Reviewed generated information objects\n|-- schemas/           # Example object contracts\n|-- scripts/           # Build, retrieval, export, and validation commands\n`-- screenshots/       # Recruiter-facing live-demo evidence\n```",
+      "title": "Content Intelligence README"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:readme#12",
+      "citation": "Content Intelligence README, section 12",
+      "collection": "method",
+      "content_hash": "d01afc4682671ffaacc13fcb041f830b81a78cbdb7acfff9ab307a70d3121934",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 358,
+        "keywords": [
+          "private",
+          "public",
+          "api",
+          "boundary",
+          "cloud",
+          "committed",
+          "content",
+          "copyrighted"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "readme#12",
+      "source_id": "readme",
+      "source_type": "public method documentation",
+      "source_visibility": "public_repo_documentation",
+      "text": "## Public-Safety Boundary\n\nThe committed demo uses synthetic and public-safe material only. Raw lecture\nmedia, private transcripts, private notes, cloud paths, course identifiers,\nstudent or personnel data, copyrighted source content without permission,\ncredentials, and API tokens must remain outside this repository and its vector\nindex.\n\n## Current Status",
+      "title": "Content Intelligence README"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:readme#13",
+      "citation": "Content Intelligence README, section 13",
+      "collection": "method",
+      "content_hash": "f5e476dedac74654648c58653064d9ced9ae9207508825e716fd26c08a47cda9",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 371,
+        "keywords": [
+          "public",
+          "retrieval",
+          "answer",
+          "based",
+          "builds",
+          "contract",
+          "conversion",
+          "corpus"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "readme#13",
+      "source_id": "readme",
+      "source_type": "public method documentation",
+      "source_visibility": "public_repo_documentation",
+      "text": "The public repository builds validated retrieval and vector-export records, and\nthe portfolio site exposes a working hybrid RAG interface over the public-safe\ncorpus. The highest-value next feature is genuine PDF, DOCX, HTML, Markdown, and\ntext conversion into the existing `NormalizedArtifact` contract, followed by a\nfixture-based retrieval and answer evaluation suite.",
       "title": "Content Intelligence README"
     },
     {
@@ -2603,7 +2711,7 @@
       "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#01",
       "citation": "Artifact Conversion Status, section 1",
       "collection": "method",
-      "content_hash": "cd32665621246750eb5d7e115c69d6e99000d6a1738631c86d3cb59bbeab477a",
+      "content_hash": "7b64393f8b416c38818a90ec567da81c32fe976b5518396241fae8e5aaab336c",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -2614,16 +2722,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 552,
+        "character_count": 551,
         "keywords": [
           "public",
           "rag",
-          "source",
           "artifact",
-          "artifacts",
-          "synthetic",
-          "2026",
-          "adapters"
+          "cited",
+          "derived",
+          "retrieval",
+          "source",
+          "synthetic"
         ]
       },
       "schema_version": 1,
@@ -2631,7 +2739,7 @@
       "source_id": "reports-artifact-conversion-and-agent-context-status",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "# Artifact Conversion And RAG Readiness Status\n\nDate: 2026-06-26\n\n## Summary\n\nThe project has been reframed as an artifact-to-RAG content intelligence\npipeline. The public repo demonstrates the safe version of the workflow with\nsynthetic artifacts; the private upstream can use real source adapters such as\nDropbox API extraction.\n\nThe current public build now reaches a retrieval-ready state:\n\n```text\nsynthetic artifacts\n-> source manifests\n-> corpus segments\n-> RAG index records\n-> public-safety review\n-> source-grounded report and method pack\n```",
+      "text": "# Artifact Conversion And RAG Deployment Status\n\nDate: 2026-07-13\n\n## Summary\n\nContent Intelligence now demonstrates the public-safe artifact-to-RAG chain\nfrom synthetic source inventory through a deployed, cited retrieval surface:\n\n```text\nsynthetic text, transcript-derived, and OCR-derived artifacts\n-> source manifests and checksums\n-> normalized information objects\n-> citation-preserving corpus segments\n-> public-safety review\n-> RAG index and vector export records\n-> hybrid vector and lexical retrieval\n-> cited public answers with limits\n```",
       "title": "Artifact Conversion Status"
     },
     {
@@ -2639,7 +2747,7 @@
       "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#02",
       "citation": "Artifact Conversion Status, section 2",
       "collection": "method",
-      "content_hash": "d9a8bad482a3a1eb76efbfb8d17aabe4b346e7c7e4e8173bf5aa0eeab8ed1dbf",
+      "content_hash": "3bee22f95a6a496fa1e7f5eb67ed6e42814004e5804fd03fbb56f75f64f3e6bc",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -2650,16 +2758,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 624,
+        "character_count": 290,
         "keywords": [
-          "generation",
-          "rag",
-          "source",
-          "index",
           "public",
-          "simulation",
-          "transcript",
-          "vector"
+          "back",
+          "capabilities",
+          "cloudflare",
+          "configured",
+          "contract",
+          "deployed",
+          "deterministic"
         ]
       },
       "schema_version": 1,
@@ -2667,7 +2775,7 @@
       "source_id": "reports-artifact-conversion-and-agent-context-status",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "The remaining production step is remote vector/RAG serving: embedding\n`RagIndexRecord` objects, loading a vector database, and exposing a bounded RAG\nquery route.\n\n## Current Public Capabilities\n\n- synthetic text source processing\n- staged cloud video-to-transcript workflow simulation\n- simulated OpenAI-style transcript enrichment\n- OCR document cleanup simulation\n- source manifest generation\n- corpus segment generation\n- retrieval-ready RAG index generation\n- generated public-safety review for index records\n- source-grounded report brief generation\n- AI-readable method pack generation\n- information object validation",
+      "text": "The local pipeline remains deterministic and inspectable. The deployed\nportfolio Worker is the public serving layer; it uses Cloudflare Vectorize and\nWorkers AI when configured, then falls back to lexical retrieval over the same\nreviewed record contract.\n\n## Implemented Public Capabilities",
       "title": "Artifact Conversion Status"
     },
     {
@@ -2675,7 +2783,7 @@
       "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#03",
       "citation": "Artifact Conversion Status, section 3",
       "collection": "method",
-      "content_hash": "8de3a09563d4864ee1e7c0625193c5a91b0e4554364cad2cf99aa911fe267b29",
+      "content_hash": "8a0bcb46174bb5d7ae745f93426b7f2baf122e21daf05495b9380406bb6a4e0b",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -2686,16 +2794,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 539,
+        "character_count": 646,
         "keywords": [
-          "private",
-          "public",
-          "source",
-          "adapter",
-          "document",
-          "repo",
-          "scripts",
-          "should"
+          "metadata",
+          "cleanup",
+          "derived",
+          "deterministic",
+          "export",
+          "lexical",
+          "object",
+          "retrieval"
         ]
       },
       "schema_version": 1,
@@ -2703,7 +2811,7 @@
       "source_id": "reports-artifact-conversion-and-agent-context-status",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "## Private Upstream Pattern\n\nThe private upstream contains the source-acquisition side of the story:\n\n- source adapter scripts for cloud artifact discovery and import\n- private manifest generation with size and checksum fields\n- transcript and document workflows that inspired the public demos\n\nThose private scripts and raw artifacts should not be copied into this public\nrepo. The public repo should document the source-adapter contract and publish\nonly synthetic, licensed, or manually reviewed derivatives.\n\n## Information Object Chain",
+      "text": "- plain-text source manifesting and normalization;\n- synthetic transcript-derived cleanup and enrichment packets;\n- synthetic OCR-derived cleanup and corpus preparation;\n- stable information-object and citation contracts;\n- content hashes, source metadata, safety levels, and embedding metadata;\n- deterministic lexical retrieval and cited report generation;\n- public-safety review before vector export;\n- Vectorize-ready export records;\n- a live hybrid vector and lexical RAG route;\n- visible citations, retrieval metadata, limits, and follow-up questions;\n- deterministic object validation across generated artifacts.\n\n## Current Input Boundary",
       "title": "Artifact Conversion Status"
     },
     {
@@ -2711,7 +2819,7 @@
       "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#04",
       "citation": "Artifact Conversion Status, section 4",
       "collection": "method",
-      "content_hash": "a55e4bc9659767d5371d89a82f31eb9ae4aec4ba78f49e09c030d57f6b3b6631",
+      "content_hash": "e066a60650d2dddef9046506f037a071140f93c654c2dbc68f86954aa1886b37",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -2722,16 +2830,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 619,
+        "character_count": 501,
         "keywords": [
-          "add",
-          "load",
-          "ragindexrecord",
-          "text",
-          "vector",
-          "agent",
-          "analysismethodpack",
-          "another"
+          "contract",
+          "not",
+          "private",
+          "public",
+          "source",
+          "adapter",
+          "artifacts",
+          "build"
         ]
       },
       "schema_version": 1,
@@ -2739,7 +2847,7 @@
       "source_id": "reports-artifact-conversion-and-agent-context-status",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "```text\nSourceManifestRecord\n-> NormalizedArtifact\n-> TranscriptEnrichmentPacket\n-> CorpusSegment\n-> RagIndexRecord\n-> EvidenceCitation\n-> ReportBrief\n-> AnalysisMethodPack\n```\n\nThese artifacts are designed to guide agent behavior: preserve provenance,\ndistinguish evidence from inference, label uncertainty, avoid unsupported\nclaims, and consume bounded source objects instead of raw instructional\nmaterials.\n\n## Next Build Sequence\n\n1. Add a remote vector load path.\n\nEmbed `RagIndexRecord` text and load public-safe records into Cloudflare\n   Vectorize or another low-cost vector database.\n\n2. Add a RAG query route.",
+      "text": "The public implementation directly processes plain text and demonstrates the\nnormalized downstream contract with synthetic transcript and OCR artifacts.\nDirect PDF, DOCX, HTML, cloud-drive, and LMS converters are not yet implemented\nin this repository.\n\nPrivate source-adapter prototypes may inform the generic contract, but private\npaths, raw source files, copyrighted transcripts, identifying metadata, and\ncredentials must not enter the public build or retrieval index.\n\n## Information Object Chain",
       "title": "Artifact Conversion Status"
     },
     {
@@ -2747,7 +2855,7 @@
       "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#05",
       "citation": "Artifact Conversion Status, section 5",
       "collection": "method",
-      "content_hash": "36a0ab0f6f1d371dc5dfc7e5af2121234e8267d0291c4a6382e81b2cdc258550",
+      "content_hash": "fade64d4a94be1eae0b5dfe3f1f384ea55c6cd5ed79d0d6868381a965311b032",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -2758,16 +2866,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 525,
+        "character_count": 429,
         "keywords": [
-          "add",
-          "answer",
-          "behavior",
-          "boundaries",
-          "citation",
-          "cite",
-          "claim",
-          "conclusion"
+          "alternative",
+          "analysismethodpack",
+          "bounded",
+          "corpussegment",
+          "covers",
+          "current",
+          "distinguish",
+          "evidence"
         ]
       },
       "schema_version": 1,
@@ -2775,7 +2883,7 @@
       "source_id": "reports-artifact-conversion-and-agent-context-status",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "Retrieve relevant index records, synthesize a short answer, cite every\n   substantive claim, and explain limits when evidence is insufficient.\n\n3. Add retrieval and answer evals.\n\nTest fixture prompts for source recall, citation grounding, refusal behavior,\n   typo robustness, vague prompt handling, and private-data boundaries.\n\n4. Add a public demo panel.\n\nSurface the RAG as the final stage of the Content Intelligence workflow on\n   the portfolio site once the live route is deployed and verified.\n\n## Current Conclusion",
+      "text": "```text\nSourceManifestRecord\n-> NormalizedArtifact\n-> TranscriptEnrichmentPacket\n-> CorpusSegment\n-> RagIndexRecord\n-> VectorExportRecord\n-> EvidenceCitation\n-> ReportBrief\n-> AnalysisMethodPack\n```\n\nThese objects preserve provenance, distinguish evidence from inference, label\nuncertainty, and give retrieval and reporting systems a bounded alternative to\nraw source files.\n\n## Validation State\n\nThe current release gate covers:",
       "title": "Artifact Conversion Status"
     },
     {
@@ -2783,7 +2891,7 @@
       "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#06",
       "citation": "Artifact Conversion Status, section 6",
       "collection": "method",
-      "content_hash": "9485e3513329eb1d41e14f3e3e3354073e59a530ecc3dad196a01361fb99fe2e",
+      "content_hash": "85fa117f0e335340a75c4b289260267a9c2bb4db46a01b2222c6972918502ab4",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -2794,16 +2902,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 242,
+        "character_count": 460,
         "keywords": [
-          "rag",
-          "adapter",
-          "artifact",
-          "describe",
-          "dropbox",
-          "final",
-          "full",
-          "layer"
+          "public",
+          "retrieval",
+          "answer",
+          "approved",
+          "been",
+          "behavior",
+          "checked",
+          "citation"
         ]
       },
       "schema_version": 1,
@@ -2811,7 +2919,79 @@
       "source_id": "reports-artifact-conversion-and-agent-context-status",
       "source_type": "public method documentation",
       "source_visibility": "public_repo_documentation",
-      "text": "The public scaffold now proves the full local workflow up to RAG readiness. The\nportfolio story should describe the project as a reusable artifact-to-RAG\npipeline, with Dropbox as one private source adapter and RAG as the final\nserving layer.",
+      "text": "- required fields and schema examples;\n- manifest and corpus counts;\n- citation and source identity;\n- approved public-safety levels;\n- high-confidence private-path and credential patterns;\n- RAG index and vector-export consistency;\n- serving behavior for hybrid retrieval and lexical fallback.\n\nThe live public endpoint has been checked for a non-empty answer, citations,\nretrieval mode, stated limits, and suggested follow-up questions.\n\n## Next Product Work",
+      "title": "Artifact Conversion Status"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#07",
+      "citation": "Artifact Conversion Status, section 7",
+      "collection": "method",
+      "content_hash": "0336ebccb9e719bc8d7edbea81e56cec32c9416ab82ad7a3909a8cffdf0ebfc6",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 581,
+        "keywords": [
+          "add",
+          "source",
+          "alongside",
+          "answer",
+          "checks",
+          "citation",
+          "conclusion",
+          "contract"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "reports-artifact-conversion-and-agent-context-status#07",
+      "source_id": "reports-artifact-conversion-and-agent-context-status",
+      "source_type": "public method documentation",
+      "source_visibility": "public_repo_documentation",
+      "text": "1. Implement real `.txt`, `.md`, `.html`, `.pdf`, and `.docx` converters that\n   emit the existing `NormalizedArtifact` contract.\n2. Add fixture questions with expected source IDs and report recall@k,\n   reciprocal rank, citation presence, and unsupported-answer detection.\n3. Publish the Worker and vector-index deployment source alongside the local\n   pipeline so the serving layer is reproducible from the public repository.\n4. Add CI for deterministic output drift, privacy scanning, conversion tests,\n   retrieval evaluation, and live-demo smoke checks.\n\n## Current Conclusion",
+      "title": "Artifact Conversion Status"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:reports-artifact-conversion-and-agent-context-status#08",
+      "citation": "Artifact Conversion Status, section 8",
+      "collection": "method",
+      "content_hash": "82530fdd192703a6831da4c4e8dced8113e36b76193987c16c63a07c591dcf2c",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 381,
+        "keywords": [
+          "conversion",
+          "public",
+          "remain",
+          "answer",
+          "answers",
+          "artifact",
+          "auditable",
+          "build"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "reports-artifact-conversion-and-agent-context-status#08",
+      "source_id": "reports-artifact-conversion-and-agent-context-status",
+      "source_type": "public method documentation",
+      "source_visibility": "public_repo_documentation",
+      "text": "The project is a working public artifact-to-RAG proof point, not merely a\nchatbot mockup. Its strongest evidence is the auditable conversion and retrieval\ncontract: source identities survive normalization, safety review gates vector\nexport, and public answers remain tied to reviewed records. Multi-format\nconversion and answer-quality evaluation remain the next substantive build.",
       "title": "Artifact Conversion Status"
     },
     {
