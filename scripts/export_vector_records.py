@@ -14,6 +14,7 @@ from corpus_pipeline.common import load_json
 
 EMBEDDING_MODEL = "@cf/baai/bge-base-en-v1.5"
 EMBEDDING_DIMENSIONS = 768
+EMBEDDING_POOLING = "cls"
 
 
 def embedding_text(record: dict[str, Any]) -> str:
@@ -30,19 +31,23 @@ def embedding_text(record: dict[str, Any]) -> str:
     return "\n".join(part for part in parts if part is not None).strip()
 
 
-def build_vector_record(record: dict[str, Any]) -> dict[str, Any]:
+def build_vector_record(record: dict[str, Any], corpus_fingerprint: str) -> dict[str, Any]:
     metadata = {
         "domain": record.get("domain", "content_intelligence"),
         "collection": record.get("collection", "evidence"),
         "corpus_version": record.get("corpus_version", 1),
+        "corpus_fingerprint": corpus_fingerprint,
         "content_hash": record.get("content_hash", ""),
         "embedding_model": record.get("embedding_model", EMBEDDING_MODEL),
         "embedding_dimensions": record.get("embedding_dimensions", EMBEDDING_DIMENSIONS),
+        "embedding_pooling": record.get("embedding_pooling", EMBEDDING_POOLING),
         "source_id": record.get("source_id", ""),
         "segment_id": record.get("segment_id", ""),
         "title": record.get("title", ""),
         "source_type": record.get("source_type", ""),
         "citation": record.get("citation", ""),
+        "source_path": record.get("source_path", ""),
+        "source_url": record.get("source_url", ""),
         "artifact_pipeline": record.get("artifact_pipeline", ""),
         "content_kind": record.get("content_kind", ""),
         "public_safety_level": record.get("public_safety_level", ""),
@@ -66,6 +71,9 @@ def validate_inputs(index: dict[str, Any], review: dict[str, Any]) -> list[dict[
         raise ValueError("rag-index input must have object_type=RagIndex")
     if review.get("object_type") != "PublicSafetyReview" or review.get("status") != "pass":
         raise ValueError("public-safety review must pass before vector export")
+    fingerprint = str(index.get("corpus_fingerprint", ""))
+    if len(fingerprint) != 64 or any(character not in "0123456789abcdef" for character in fingerprint):
+        raise ValueError("rag-index input must have a lowercase SHA-256 corpus fingerprint")
     records = index.get("records", [])
     if not records:
         raise ValueError("rag-index input has no records")
@@ -89,11 +97,12 @@ def main() -> int:
     index = load_json(root / args.index)
     review = load_json(root / args.review)
     records = validate_inputs(index, review)
+    fingerprint = index["corpus_fingerprint"]
     output_path = root / args.out
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as handle:
         for record in records:
-            handle.write(json.dumps(build_vector_record(record), sort_keys=True) + "\n")
+            handle.write(json.dumps(build_vector_record(record, fingerprint), sort_keys=True) + "\n")
     print(f"wrote {args.out} ({len(records)} records)")
     return 0
 

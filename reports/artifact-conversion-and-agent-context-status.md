@@ -5,7 +5,7 @@ Date: 2026-07-13
 ## Summary
 
 Content Intelligence now demonstrates the public-safe artifact-to-RAG chain
-from synthetic source inventory through a deployed, cited retrieval surface:
+from synthetic source inventory through a cited retrieval surface:
 
 ```text
 synthetic text, transcript-derived, and OCR-derived artifacts
@@ -18,10 +18,11 @@ synthetic text, transcript-derived, and OCR-derived artifacts
 -> cited public answers with limits
 ```
 
-The local pipeline remains deterministic and inspectable. The deployed
-portfolio Worker is the public serving layer; it uses Cloudflare Vectorize and
-Workers AI when configured, then falls back to lexical retrieval over the same
-reviewed record contract.
+The local pipeline and portable serving core remain deterministic and
+inspectable. The portfolio Worker is the deployment layer; it uses Cloudflare
+Vectorize and Workers AI when configured, then falls back to lexical retrieval
+over the same reviewed record contract. The refreshed `v2` Vectorize index and
+Worker release are locally validated but have not yet been deployed.
 
 ## Implemented Public Capabilities
 
@@ -33,9 +34,10 @@ reviewed record contract.
 - deterministic lexical retrieval and cited report generation;
 - public-safety review before vector export;
 - Vectorize-ready export records;
-- a live hybrid vector and lexical RAG route;
+- a portable hybrid vector and lexical RAG serving core;
 - visible citations, retrieval metadata, limits, and follow-up questions;
-- deterministic object validation across generated artifacts.
+- deterministic object validation across generated artifacts;
+- retrieval fixtures, generated-answer checks, and corpus fingerprint parity.
 
 ## Current Input Boundary
 
@@ -76,19 +78,24 @@ The current release gate covers:
 - approved public-safety levels;
 - high-confidence private-path and credential patterns;
 - RAG index and vector-export consistency;
-- serving behavior for hybrid retrieval and lexical fallback.
+- serving behavior for hybrid retrieval and lexical fallback;
+- five retrieval fixtures with expected sources;
+- generated inline-citation and unsupported-answer checks;
+- corpus fingerprint, record-count, and pooling-mode parity.
 
-The live public endpoint has been checked for a non-empty answer, citations,
-retrieval mode, stated limits, and suggested follow-up questions.
+Release tooling checks the live endpoint for a matching corpus fingerprint,
+record count, pooling mode, non-empty cited answers, retrieval mode, stated
+limits, and supported-scope behavior. Those checks must run after the pending
+`v2` deployment.
 
 ## Next Product Work
 
 1. Implement real `.txt`, `.md`, `.html`, `.pdf`, and `.docx` converters that
    emit the existing `NormalizedArtifact` contract.
-2. Add fixture questions with expected source IDs and report recall@k,
-   reciprocal rank, citation presence, and unsupported-answer detection.
-3. Publish the Worker and vector-index deployment source alongside the local
-   pipeline so the serving layer is reproducible from the public repository.
+2. Expand the five-case retrieval fixture set and publish recall@k and
+   reciprocal-rank trends across releases.
+3. Create and load the `content-rag-public-v2` index, deploy the synchronized
+   Worker bundle, and pass the live corpus-parity and answer-quality gates.
 4. Add CI for deterministic output drift, privacy scanning, conversion tests,
    retrieval evaluation, and live-demo smoke checks.
 
@@ -98,4 +105,4 @@ The project is a working public artifact-to-RAG proof point, not merely a
 chatbot mockup. Its strongest evidence is the auditable conversion and retrieval
 contract: source identities survive normalization, safety review gates vector
 export, and public answers remain tied to reviewed records. Multi-format
-conversion and answer-quality evaluation remain the next substantive build.
+conversion and the validated `v2` deployment remain the next substantive work.

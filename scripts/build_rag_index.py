@@ -3,11 +3,13 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import re
 import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -34,6 +36,11 @@ STOPWORDS = {
     "to",
     "with",
 }
+
+REPO_URL = "https://github.com/grant-mccurdy/content-intelligence"
+EMBEDDING_MODEL = "@cf/baai/bge-base-en-v1.5"
+EMBEDDING_DIMENSIONS = 768
+EMBEDDING_POOLING = "cls"
 
 CORPUS_INPUTS = [
     ("synthetic_text_sources", "data/processed/corpus.json", "synthetic source document"),
@@ -77,6 +84,27 @@ def content_hash(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def github_anchor(text: str) -> str:
+    heading = next((line for line in text.splitlines() if re.match(r"^#{1,6}\s+", line)), "")
+    if not heading:
+        return ""
+    value = re.sub(r"^#{1,6}\s+", "", heading).strip().lower()
+    value = re.sub(r"[`*_~]", "", value)
+    value = re.sub(r"[^a-z0-9\s-]", "", value)
+    return re.sub(r"[\s-]+", "-", value).strip("-")
+
+
+def source_url(relative_path: str, anchor: str = "") -> str:
+    encoded_path = quote(relative_path, safe="/-._~")
+    suffix = f"#{quote(anchor, safe='-._~')}" if anchor else ""
+    return f"{REPO_URL}/blob/main/{encoded_path}{suffix}"
+
+
+def corpus_fingerprint(records: list[dict[str, Any]]) -> str:
+    canonical = json.dumps(records, ensure_ascii=True, separators=(",", ":"), sort_keys=True)
+    return content_hash(canonical)
+
+
 def chunk_text(text: str, max_chars: int = 650) -> list[str]:
     blocks = [block.strip() for block in re.split(r"\n\s*\n", text.replace("\r\n", "\n")) if block.strip()]
     chunks: list[str] = []
@@ -116,8 +144,9 @@ def base_record(**kwargs: Any) -> dict[str, Any]:
         "domain": "content_intelligence",
         "corpus_version": 1,
         "content_hash": content_hash(text),
-        "embedding_model": "@cf/baai/bge-base-en-v1.5",
-        "embedding_dimensions": 768,
+        "embedding_model": EMBEDDING_MODEL,
+        "embedding_dimensions": EMBEDDING_DIMENSIONS,
+        "embedding_pooling": EMBEDDING_POOLING,
         "public_safety_level": "L3_public_safe_derivative",
         "source_visibility": kwargs.get("source_visibility", "public_demo_synthetic"),
         "license_status": kwargs.get("license_status", "synthetic_demo"),
@@ -132,12 +161,26 @@ def base_record(**kwargs: Any) -> dict[str, Any]:
 
 def load_evidence_segments(root: Path) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
+    synthetic_manifest = load_json(root / "data/processed/manifest.json")
+    synthetic_paths = {source["source_id"]: source["path"] for source in synthetic_manifest.get("sources", [])}
     for pipeline, rel_path, content_kind in CORPUS_INPUTS:
         path = root / rel_path
         corpus = load_json(path)
         for segment in corpus.get("segments", []):
             chunk_id = f"{pipeline}:{segment['segment_id']}"
             text = segment.get("text", "")
+            if pipeline == "synthetic_text_sources":
+                record_source_path = synthetic_paths[segment["source_id"]]
+                anchor = ""
+            elif pipeline == "cloud_video_transcription":
+                record_source_path = (
+                    f"sample_outputs/cloud_video_transcription/corpus_segments/{segment['source_id']}.json"
+                )
+                anchor = ""
+            else:
+                record_source_path = "sample_outputs/ocr_document_cleanup/cleaned_notes.md"
+                page_match = re.search(r"page\s+(\d+)", segment.get("citation", ""), re.IGNORECASE)
+                anchor = f"page-{page_match.group(1)}" if page_match else ""
             records.append(
                 base_record(
                     chunk_id=chunk_id,
@@ -146,6 +189,8 @@ def load_evidence_segments(root: Path) -> list[dict[str, Any]]:
                     title=segment["title"],
                     source_type=segment["source_type"],
                     citation=segment["citation"],
+                    source_path=record_source_path,
+                    source_url=source_url(record_source_path, anchor),
                     text=text,
                     artifact_pipeline=pipeline,
                     content_kind=content_kind,
@@ -164,6 +209,7 @@ def load_method_segments(root: Path) -> list[dict[str, Any]]:
         source_id = slugify(relative_path.replace("/", "-").replace(".md", ""), "method-source")
         for index, text in enumerate(chunk_text(read_text(path)), start=1):
             segment_id = f"{source_id}#{index:02d}"
+            anchor = github_anchor(text)
             records.append(
                 base_record(
                     chunk_id=f"method:{segment_id}",
@@ -172,6 +218,8 @@ def load_method_segments(root: Path) -> list[dict[str, Any]]:
                     title=title,
                     source_type="public method documentation",
                     citation=f"{title}, section {index}",
+                    source_path=relative_path,
+                    source_url=source_url(relative_path, anchor),
                     text=text,
                     artifact_pipeline="method_documentation",
                     content_kind="method documentation",
@@ -218,8 +266,10 @@ def build_rag_index(records: list[dict[str, Any]]) -> dict[str, Any]:
             "method": sum(1 for record in records if record.get("collection") == "method"),
         },
         "embedding_status": "not_embedded_public_demo",
-        "embedding_model": "@cf/baai/bge-base-en-v1.5",
-        "embedding_dimensions": 768,
+        "embedding_model": EMBEDDING_MODEL,
+        "embedding_dimensions": EMBEDDING_DIMENSIONS,
+        "embedding_pooling": EMBEDDING_POOLING,
+        "corpus_fingerprint": corpus_fingerprint(records),
         "vector_database_target": "Cloudflare Vectorize",
         "records": records,
     }

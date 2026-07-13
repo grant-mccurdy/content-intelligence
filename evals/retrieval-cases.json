@@ -1,0 +1,27 @@
+[
+  {
+    "id": "workflow_citations",
+    "question": "How does the artifact-to-RAG workflow preserve citations?",
+    "expected_chunk_prefixes": ["method:docs-artifact-to-rag-workflow#"]
+  },
+  {
+    "id": "implemented_formats",
+    "question": "Which input formats are implemented directly today, and which are deferred?",
+    "expected_chunk_prefixes": ["method:readme#04"]
+  },
+  {
+    "id": "public_safety",
+    "question": "How does the public-safety review prevent private content leakage?",
+    "expected_chunk_prefixes": ["method:docs-evaluation-protocol#", "method:docs-privacy-and-copyright#"]
+  },
+  {
+    "id": "retrieval_evaluation",
+    "question": "How is retrieval evaluated?",
+    "expected_chunk_prefixes": ["method:docs-evaluation-protocol#"]
+  },
+  {
+    "id": "information_objects",
+    "question": "What information objects does the pipeline produce?",
+    "expected_chunk_prefixes": ["method:docs-information-object-model#"]
+  }
+]

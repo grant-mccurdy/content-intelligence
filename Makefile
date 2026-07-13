@@ -1,4 +1,4 @@
-.PHONY: all demo manifest corpus report search media-demo ocr-demo rag-index vector-export object-map method-pack validate portfolio-demo clean
+.PHONY: all demo manifest corpus report search media-demo ocr-demo rag-index vector-export object-map method-pack validate eval serving-test portfolio-demo clean
 
 PYTHON ?= python3
 QUERY ?= source grounded report citations
@@ -40,7 +40,13 @@ method-pack: object-map
 validate:
 	$(PYTHON) scripts/validate_information_objects.py
 
-portfolio-demo: demo media-demo ocr-demo rag-index vector-export object-map method-pack validate
+eval: rag-index
+	$(PYTHON) scripts/evaluate_rag_retrieval.py
+
+serving-test:
+	node --test serving/content-rag-core.test.mjs
+
+portfolio-demo: demo media-demo ocr-demo rag-index vector-export object-map method-pack validate eval serving-test
 
 clean:
 	rm -rf data/processed sample_outputs/demo-report.md sample_outputs/report-brief.json sample_outputs/information-object-map.json sample_outputs/analysis-method-pack.json sample_outputs/rag-index.json sample_outputs/public-safety-review.json sample_outputs/vector-records.jsonl sample_outputs/cloud_video_transcription sample_outputs/ocr_document_cleanup

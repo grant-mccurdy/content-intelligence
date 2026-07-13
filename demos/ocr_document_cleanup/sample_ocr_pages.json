@@ -9,17 +9,17 @@
     {
       "page": 1,
       "image_artifact": "private_images/page-001.png",
-      "ocr_text": "Topic: Source grounded reporting\\n\\nA manafest records each source file, checksum, and processing status. The report should cite the segment that supports each claim."
+      "ocr_text": "Topic: Source grounded reporting\n\nA manafest records each source file, checksum, and processing status. The report should cite the segment that supports each claim."
     },
     {
       "page": 2,
       "image_artifact": "private_images/page-002.png",
-      "ocr_text": "Topic: Conservative cleanup\\n\\nCleanup may fix obvious OCR errrors and spacing, but it must not invent missing details. If a formula or term is [unclear], keep the marker."
+      "ocr_text": "Topic: Conservative cleanup\n\nCleanup may fix obvious OCR errrors and spacing, but it must not invent missing details. If a formula or term is [unclear], keep the marker."
     },
     {
       "page": 3,
       "image_artifact": "private_images/page-003.png",
-      "ocr_text": "Topic: Corpus preparation\\n\\nAfter review, cleaned notes become short corpus segmnts with stable citations for retrival and reporting."
+      "ocr_text": "Topic: Corpus preparation\n\nAfter review, cleaned notes become short corpus segmnts with stable citations for retrival and reporting."
     }
   ]
 }
