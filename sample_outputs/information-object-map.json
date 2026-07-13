@@ -38,14 +38,14 @@
       "source_manifest_records": 3
     },
     {
-      "corpus_segments": 80,
+      "corpus_segments": 85,
       "evidence_citations": 0,
       "normalized_artifacts": 0,
       "pipeline": "rag_index",
-      "rag_index_records": 80,
+      "rag_index_records": 85,
       "report_briefs": 0,
       "source_manifest_records": 0,
-      "vector_export_records": 80
+      "vector_export_records": 85
     }
   ],
   "public_safety": {
