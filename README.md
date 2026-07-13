@@ -1,142 +1,159 @@
 # Content Intelligence
 
-Artifact-to-RAG pipeline for source-grounded instructional intelligence.
+Artifact-to-RAG pipeline for turning disparate source material into
+provenance-rich information objects and source-grounded answers.
 
-This repository demonstrates the public-safe version of a private workflow that
-starts with source artifacts and ends with retrieval-ready evidence for a RAG
-assistant. The first private source adapter uses Dropbox API extraction, but the
-public project is intentionally source-agnostic: the same pattern can support
-local folders, Google Drive, Canvas/LMS exports, S3/R2 buckets, or public web
-sources.
+The public workflow standardizes synthetic text, transcript-derived, and
+OCR-derived content into one auditable object chain:
 
 ```text
-source adapters
--> raw artifact inventory
--> source manifests
--> conversion and conservative cleaning
--> public-safety washing
--> information objects
--> retrieval-ready chunks
--> vector index target
--> source-grounded RAG
--> evaluation
+source inventory
+-> manifest and checksum
+-> normalized artifact
+-> citation-preserving corpus segments
+-> public-safety review
+-> retrieval index and vector records
+-> hybrid RAG answer with citations and limits
 ```
 
-The committed demo uses synthetic and public-safe material only. Raw lecture
-media, private transcripts, private notes, Dropbox paths, course identifiers,
-and identifying metadata stay outside this public repository.
+## Start Here
 
-## What This Project Demonstrates
+- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)
+- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
+- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
+- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
 
-- Source-adapter design for private artifact extraction
-- Manifest-first provenance and checksum tracking
-- Transcript and OCR/document cleanup workflows
-- Public-safety washing before publication or indexing
-- Analysis-ready information objects
-- Citation-preserving corpus segmentation
-- Retrieval-ready RAG index records
-- Source-grounded report generation
-- AI-readable method packs for bounded agent behavior
-- Validation for schema, privacy, retrieval inputs, and evidence contracts
+![Live Content Intelligence RAG response](screenshots/live-rag-cited-answer.png)
 
-## Current Vs Next
+The live public service retrieves from safety-reviewed method and evidence
+records, combines vector and lexical results, returns source links, and states
+its limits when the indexed corpus is insufficient.
 
-| Layer | Current status |
+## What Is Implemented
+
+The repository is deliberately precise about implemented versus extensible
+input support:
+
+| Input or layer | Public implementation |
 | --- | --- |
-| Source adapters | Private Dropbox/source import scripts exist outside this public repo; this repo documents the adapter contract. |
-| Conversion demos | Synthetic transcript, OCR, and source-note examples are implemented. |
-| Information objects | Manifest, corpus, citation, report, method-pack, and RAG index objects are generated and validated. |
-| Retrieval | Keyword search, retrieval-ready `rag-index.json`, and Cloudflare Vectorize export records are implemented. |
-| Vector database | Cloudflare Vectorize is the recommended target; records include model, dimension, collection, and content-hash metadata for loading. |
-| RAG service | The portfolio Worker exposes a Content RAG route that can use Vectorize when configured and falls back to lexical retrieval over the same public-safe index. |
-| Evaluation | Schema, object, privacy, generated-artifact, retrieval-input, vector-export, and Worker retrieval-path validation are implemented; answer-quality evals remain the next quality layer. |
+| Plain text | Direct manifesting, normalization, segmentation, retrieval, and reporting. |
+| Transcript-derived text | Synthetic staged media/transcript workflow with enrichment packets and cleaned corpus objects. |
+| OCR-derived text | Synthetic page-level OCR cleanup workflow with normalized output and corpus objects. |
+| Markdown documentation | Chunked as public method evidence for retrieval. |
+| PDF, DOCX, and HTML conversion | Adapter contract documented; direct public converters are deferred. |
+| Cloud and LMS sources | Dropbox pattern documented from a private prototype; public Google Drive, Canvas, S3/R2, and web adapters are deferred. |
+| Retrieval | Local lexical search plus a public hybrid vector/lexical RAG service. |
+| Evaluation | Deterministic schema, privacy, citation, retrieval-input, vector-export, and serving-path checks; answer-quality fixtures are deferred. |
 
-## Reviewer Path
+The public demo does not claim to ingest arbitrary file formats. It proves the
+normalization, provenance, safety, retrieval, and reporting contracts that
+format-specific converters can target.
 
-1. Read `docs/artifact-to-rag-workflow.md` for the end-to-end architecture.
-2. Read `docs/source-adapters.md` for the generic adapter contract and Dropbox
-   v1 pattern.
-3. Inspect `sample_outputs/rag-index.json` to see the retrieval-ready records.
-4. Inspect `sample_outputs/public-safety-review.json` to see the safety gate.
-5. Read `docs/rag-architecture.md` and `docs/evaluation-protocol.md` for the
-   hybrid vector/lexical serving layer and tests.
-6. Run `make portfolio-demo` to rebuild and validate the public-safe demo.
+## What The Project Proves
 
-## Generated Objects
+### A standard information-object model
 
-The demo builds:
+Each stage emits a small structured object rather than passing ad hoc raw files
+between scripts:
 
-- `data/processed/manifest.json`
-- `data/processed/corpus.json`
-- `sample_outputs/demo-report.md`
-- `sample_outputs/report-brief.json`
-- `sample_outputs/rag-index.json`
-- `sample_outputs/public-safety-review.json`
-- `sample_outputs/vector-records.jsonl`
-- `sample_outputs/information-object-map.json`
-- `sample_outputs/analysis-method-pack.json`
+- `SourceManifestRecord`
+- `NormalizedArtifact`
+- `TranscriptEnrichmentPacket`
+- `CorpusSegment`
+- `RagIndexRecord`
+- `VectorExportRecord`
+- `EvidenceCitation`
+- `ReportBrief`
+- `AnalysisMethodPack`
 
-The canonical method contract is `sample_outputs/analysis-method-pack.json`.
-It tells an agent or algorithm how to retrieve source objects, cite evidence,
-preserve uncertainty, and avoid private source leakage.
+Stable source IDs, checksums, citations, transformation status, safety levels,
+content hashes, and embedding metadata keep downstream outputs traceable.
 
-## Quick Demo
+### Public-safety gates before retrieval
 
-The public scaffold is offline and standard-library only.
+Raw private artifacts are not valid retrieval inputs. The build checks generated
+records for private paths, identifying data, credential patterns, private course
+codes, and unreviewed source boundaries before vector export.
+
+### Source-grounded RAG
+
+`sample_outputs/rag-index.json` and `sample_outputs/vector-records.jsonl`
+contain the same reviewed records used by the serving pattern. The public
+portfolio Worker supports hybrid vector-plus-lexical retrieval when Cloudflare
+bindings are available and a lexical fallback over the same bounded corpus.
+
+Every answer should:
+
+- cite the records supporting substantive claims;
+- distinguish evidence from inference;
+- state when the corpus is insufficient;
+- refuse requests for raw private artifacts or credentials;
+- offer follow-up questions supported by the indexed material.
+
+## Rebuild The Public Demo
+
+The local pipeline uses Python and keeps the core demo offline:
 
 ```bash
 make portfolio-demo
 make search QUERY="feedback rubric evidence"
 ```
 
-Direct Python equivalent:
+`make portfolio-demo` rebuilds and validates:
+
+- source manifests and corpus segments;
+- transcript and OCR demonstration objects;
+- the cited demo report and report brief;
+- the RAG index and vector export;
+- the information-object map and method pack;
+- the generated public-safety review.
+
+Run syntax and object validation directly:
 
 ```bash
-python3 scripts/build_manifest.py
-python3 scripts/build_corpus.py
-python3 scripts/generate_report.py
-python3 demos/cloud_video_transcription/run_demo.py
-python3 demos/ocr_document_cleanup/run_demo.py
-python3 scripts/build_rag_index.py
-python3 scripts/export_vector_records.py
-python3 scripts/build_information_object_map.py
-python3 scripts/build_analysis_method_pack.py
-python3 scripts/validate_information_objects.py
+python3 -m py_compile corpus_pipeline/*.py scripts/*.py \
+  demos/cloud_video_transcription/run_demo.py \
+  demos/ocr_document_cleanup/run_demo.py
+make validate
 ```
 
-## Project Structure
+## Reviewer Path
+
+1. Try the live RAG presets on the portfolio page.
+2. Inspect `sample_outputs/rag-index.json` for retrieval records and citations.
+3. Inspect `sample_outputs/public-safety-review.json` for the release gate.
+4. Read `docs/artifact-to-rag-workflow.md` for the end-to-end architecture.
+5. Read `docs/evaluation-protocol.md` for deterministic and planned quality checks.
+6. Run `make portfolio-demo` to reproduce the committed public outputs.
+
+## Repository Layout
 
 ```text
 content-intelligence/
-├── corpus_pipeline/
-├── data/
-├── demos/
-│   ├── cloud_video_transcription/
-│   └── ocr_document_cleanup/
-├── docs/
-│   ├── artifact-to-rag-workflow.md
-│   ├── source-adapters.md
-│   ├── rag-architecture.md
-│   └── evaluation-protocol.md
-├── method_pack/
-├── reports/
-├── sample_outputs/
-├── schemas/
-└── scripts/
+|-- corpus_pipeline/   # Shared normalization and tokenization helpers
+|-- data/synthetic/    # Public-safe source fixtures
+|-- demos/             # Transcript and OCR-derived workflow simulations
+|-- docs/              # Architecture, contracts, safety, and evaluation
+|-- method_pack/       # Bounded source-use and reporting rules
+|-- reports/           # Current architecture and deployment status
+|-- sample_outputs/    # Reviewed generated information objects
+|-- schemas/           # Example object contracts
+|-- scripts/           # Build, retrieval, export, and validation commands
+`-- screenshots/       # Recruiter-facing live-demo evidence
 ```
 
-## Public Safety Rules
+## Public-Safety Boundary
 
-Do not publish professor names, university course identifiers, private LMS
-links, copyrighted transcripts, raw lecture text, video URLs, private lecture
-manifests, private Dropbox paths, credentials, or coursework-specific prompts.
+The committed demo uses synthetic and public-safe material only. Raw lecture
+media, private transcripts, private notes, cloud paths, course identifiers,
+student or personnel data, copyrighted source content without permission,
+credentials, and API tokens must remain outside this repository and its vector
+index.
 
-Public examples should use synthetic transcripts, synthetic notes,
-public-domain material, permissively licensed material, or manually reviewed
-public-safe derivatives.
+## Current Status
 
-## Portfolio Framing
-
-The value is not a chatbot alone. The value is the system that converts messy
-instructional artifacts into safe, auditable, retrievable evidence objects and
-then serves those objects through a bounded RAG interface.
+The public repository builds validated retrieval and vector-export records, and
+the portfolio site exposes a working hybrid RAG interface over the public-safe
+corpus. The highest-value next feature is genuine PDF, DOCX, HTML, Markdown, and
+text conversion into the existing `NormalizedArtifact` contract, followed by a
+fixture-based retrieval and answer evaluation suite.

@@ -1,54 +1,52 @@
-# Artifact Conversion And RAG Readiness Status
+# Artifact Conversion And RAG Deployment Status
 
-Date: 2026-06-26
+Date: 2026-07-13
 
 ## Summary
 
-The project has been reframed as an artifact-to-RAG content intelligence
-pipeline. The public repo demonstrates the safe version of the workflow with
-synthetic artifacts; the private upstream can use real source adapters such as
-Dropbox API extraction.
-
-The current public build now reaches a retrieval-ready state:
+Content Intelligence now demonstrates the public-safe artifact-to-RAG chain
+from synthetic source inventory through a deployed, cited retrieval surface:
 
 ```text
-synthetic artifacts
--> source manifests
--> corpus segments
--> RAG index records
+synthetic text, transcript-derived, and OCR-derived artifacts
+-> source manifests and checksums
+-> normalized information objects
+-> citation-preserving corpus segments
 -> public-safety review
--> source-grounded report and method pack
+-> RAG index and vector export records
+-> hybrid vector and lexical retrieval
+-> cited public answers with limits
 ```
 
-The remaining production step is remote vector/RAG serving: embedding
-`RagIndexRecord` objects, loading a vector database, and exposing a bounded RAG
-query route.
+The local pipeline remains deterministic and inspectable. The deployed
+portfolio Worker is the public serving layer; it uses Cloudflare Vectorize and
+Workers AI when configured, then falls back to lexical retrieval over the same
+reviewed record contract.
 
-## Current Public Capabilities
+## Implemented Public Capabilities
 
-- synthetic text source processing
-- staged cloud video-to-transcript workflow simulation
-- simulated OpenAI-style transcript enrichment
-- OCR document cleanup simulation
-- source manifest generation
-- corpus segment generation
-- retrieval-ready RAG index generation
-- generated public-safety review for index records
-- source-grounded report brief generation
-- AI-readable method pack generation
-- information object validation
+- plain-text source manifesting and normalization;
+- synthetic transcript-derived cleanup and enrichment packets;
+- synthetic OCR-derived cleanup and corpus preparation;
+- stable information-object and citation contracts;
+- content hashes, source metadata, safety levels, and embedding metadata;
+- deterministic lexical retrieval and cited report generation;
+- public-safety review before vector export;
+- Vectorize-ready export records;
+- a live hybrid vector and lexical RAG route;
+- visible citations, retrieval metadata, limits, and follow-up questions;
+- deterministic object validation across generated artifacts.
 
-## Private Upstream Pattern
+## Current Input Boundary
 
-The private upstream contains the source-acquisition side of the story:
+The public implementation directly processes plain text and demonstrates the
+normalized downstream contract with synthetic transcript and OCR artifacts.
+Direct PDF, DOCX, HTML, cloud-drive, and LMS converters are not yet implemented
+in this repository.
 
-- source adapter scripts for cloud artifact discovery and import
-- private manifest generation with size and checksum fields
-- transcript and document workflows that inspired the public demos
-
-Those private scripts and raw artifacts should not be copied into this public
-repo. The public repo should document the source-adapter contract and publish
-only synthetic, licensed, or manually reviewed derivatives.
+Private source-adapter prototypes may inform the generic contract, but private
+paths, raw source files, copyrighted transcripts, identifying metadata, and
+credentials must not enter the public build or retrieval index.
 
 ## Information Object Chain
 
@@ -58,41 +56,46 @@ SourceManifestRecord
 -> TranscriptEnrichmentPacket
 -> CorpusSegment
 -> RagIndexRecord
+-> VectorExportRecord
 -> EvidenceCitation
 -> ReportBrief
 -> AnalysisMethodPack
 ```
 
-These artifacts are designed to guide agent behavior: preserve provenance,
-distinguish evidence from inference, label uncertainty, avoid unsupported
-claims, and consume bounded source objects instead of raw instructional
-materials.
+These objects preserve provenance, distinguish evidence from inference, label
+uncertainty, and give retrieval and reporting systems a bounded alternative to
+raw source files.
 
-## Next Build Sequence
+## Validation State
 
-1. Add a remote vector load path.
+The current release gate covers:
 
-   Embed `RagIndexRecord` text and load public-safe records into Cloudflare
-   Vectorize or another low-cost vector database.
+- required fields and schema examples;
+- manifest and corpus counts;
+- citation and source identity;
+- approved public-safety levels;
+- high-confidence private-path and credential patterns;
+- RAG index and vector-export consistency;
+- serving behavior for hybrid retrieval and lexical fallback.
 
-2. Add a RAG query route.
+The live public endpoint has been checked for a non-empty answer, citations,
+retrieval mode, stated limits, and suggested follow-up questions.
 
-   Retrieve relevant index records, synthesize a short answer, cite every
-   substantive claim, and explain limits when evidence is insufficient.
+## Next Product Work
 
-3. Add retrieval and answer evals.
-
-   Test fixture prompts for source recall, citation grounding, refusal behavior,
-   typo robustness, vague prompt handling, and private-data boundaries.
-
-4. Add a public demo panel.
-
-   Surface the RAG as the final stage of the Content Intelligence workflow on
-   the portfolio site once the live route is deployed and verified.
+1. Implement real `.txt`, `.md`, `.html`, `.pdf`, and `.docx` converters that
+   emit the existing `NormalizedArtifact` contract.
+2. Add fixture questions with expected source IDs and report recall@k,
+   reciprocal rank, citation presence, and unsupported-answer detection.
+3. Publish the Worker and vector-index deployment source alongside the local
+   pipeline so the serving layer is reproducible from the public repository.
+4. Add CI for deterministic output drift, privacy scanning, conversion tests,
+   retrieval evaluation, and live-demo smoke checks.
 
 ## Current Conclusion
 
-The public scaffold now proves the full local workflow up to RAG readiness. The
-portfolio story should describe the project as a reusable artifact-to-RAG
-pipeline, with Dropbox as one private source adapter and RAG as the final
-serving layer.
+The project is a working public artifact-to-RAG proof point, not merely a
+chatbot mockup. Its strongest evidence is the auditable conversion and retrieval
+contract: source identities survive normalization, safety review gates vector
+export, and public answers remain tied to reviewed records. Multi-format
+conversion and answer-quality evaluation remain the next substantive build.
