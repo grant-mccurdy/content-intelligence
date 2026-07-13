@@ -3,6 +3,13 @@
 Artifact-to-RAG pipeline for turning disparate source material into
 provenance-rich information objects and source-grounded answers.
 
+## Project Links
+
+- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)
+- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
+- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
+- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
+
 The public workflow standardizes synthetic text, transcript-derived, and
 OCR-derived content into one auditable object chain:
 
@@ -15,15 +22,6 @@ source inventory
 -> retrieval index and vector records
 -> hybrid RAG answer with citations and limits
 ```
-
-## Start Here
-
-- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)
-- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
-- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
-- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
-
-![Live Content Intelligence RAG response](screenshots/live-rag-cited-answer.png)
 
 The live public service retrieves from safety-reviewed method and evidence
 records, combines vector and lexical results, returns source links, and states
