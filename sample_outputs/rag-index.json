@@ -1,10 +1,10 @@
 {
-  "chunk_count": 91,
+  "chunk_count": 93,
   "collections": {
     "evidence": 20,
-    "method": 71
+    "method": 73
   },
-  "corpus_fingerprint": "8313b6bbc759a0fe80e0014b286d63aad44f4cbf3e72c40fe434ce4ebec6144d",
+  "corpus_fingerprint": "f41db7859938b89925fb38392208263c8c145d3d61c818a5cfc2818c88c67756",
   "description": "Public-safe retrieval-ready records for the artifact-to-RAG demo.",
   "embedding_dimensions": 768,
   "embedding_model": "@cf/baai/bge-base-en-v1.5",
@@ -797,7 +797,7 @@
       "chunk_id": "method:readme#01",
       "citation": "Content Intelligence README, section 1",
       "collection": "method",
-      "content_hash": "88c0a5907d9d66df2010675a0658738192250f34a54753362a0f1ef694db609b",
+      "content_hash": "8c9aba1cf387bd29bda99f4e25965d5b5fbaf8a0786d11bc9730d30f44787a05",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -809,16 +809,16 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 606,
+        "character_count": 368,
         "keywords": [
           "content",
           "intelligence",
+          "quality",
+          "actions",
+          "com",
           "github",
           "grant",
-          "html",
-          "https",
-          "mccurdy",
-          "demo"
+          "https"
         ]
       },
       "schema_version": 1,
@@ -828,13 +828,52 @@
       "source_type": "public method documentation",
       "source_url": "https://github.com/grant-mccurdy/content-intelligence/blob/main/README.md#content-intelligence",
       "source_visibility": "public_repo_documentation",
-      "text": "# Content Intelligence\n\nArtifact-to-RAG pipeline for turning disparate source material into\nprovenance-rich information objects and source-grounded answers.\n\n## Project Links\n\n- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)\n- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)\n- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)\n- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)",
+      "text": "# Content Intelligence\n\n[![Quality](https://github.com/grant-mccurdy/content-intelligence/actions/workflows/quality.yml/badge.svg)](https://github.com/grant-mccurdy/content-intelligence/actions/workflows/quality.yml)\n\nArtifact-to-RAG pipeline for turning disparate source material into\nprovenance-rich information objects and source-grounded answers.\n\n## Project Links",
       "title": "Content Intelligence README"
     },
     {
       "artifact_pipeline": "method_documentation",
       "chunk_id": "method:readme#02",
       "citation": "Content Intelligence README, section 2",
+      "collection": "method",
+      "content_hash": "cb453d3a259069aa2d97a9fa93d4c685f3eb40664fcb0add22a149e10e7df58b",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_pooling": "cls",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 534,
+        "keywords": [
+          "content",
+          "github",
+          "grant",
+          "html",
+          "https",
+          "intelligence",
+          "live",
+          "mccurdy"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "readme#02",
+      "source_id": "readme",
+      "source_path": "README.md",
+      "source_type": "public method documentation",
+      "source_url": "https://github.com/grant-mccurdy/content-intelligence/blob/main/README.md",
+      "source_visibility": "public_repo_documentation",
+      "text": "- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)\n- [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)\n- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)\n- [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)\n\n![Live cited RAG answer grounded in the reviewed public corpus](screenshots/live-rag-cited-answer.png)",
+      "title": "Content Intelligence README"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:readme#03",
+      "citation": "Content Intelligence README, section 3",
       "collection": "method",
       "content_hash": "6aa26239dffc31868a93f31feaab2b2cb0c7cb01b863f8bf89ce9baf4c69d054",
       "content_kind": "method documentation",
@@ -861,7 +900,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#02",
+      "segment_id": "readme#03",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -872,8 +911,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#03",
-      "citation": "Content Intelligence README, section 3",
+      "chunk_id": "method:readme#04",
+      "citation": "Content Intelligence README, section 4",
       "collection": "method",
       "content_hash": "2e637fcee0fea20c632cad1de3fe6ecd9e98d564c8fff389dfa41820136a5f95",
       "content_kind": "method documentation",
@@ -900,7 +939,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#03",
+      "segment_id": "readme#04",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -911,8 +950,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#04",
-      "citation": "Content Intelligence README, section 4",
+      "chunk_id": "method:readme#05",
+      "citation": "Content Intelligence README, section 5",
       "collection": "method",
       "content_hash": "fcec4b85a2ef58398e55d4f91695e85d3edf312b525f685d70b2d835512e521b",
       "content_kind": "method documentation",
@@ -939,7 +978,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#04",
+      "segment_id": "readme#05",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -950,8 +989,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#05",
-      "citation": "Content Intelligence README, section 5",
+      "chunk_id": "method:readme#06",
+      "citation": "Content Intelligence README, section 6",
       "collection": "method",
       "content_hash": "33d07071e1df91da58934b8a1f876081b9fad6c7c2a6bf2059d434c7dc2a4892",
       "content_kind": "method documentation",
@@ -978,7 +1017,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#05",
+      "segment_id": "readme#06",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -989,8 +1028,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#06",
-      "citation": "Content Intelligence README, section 6",
+      "chunk_id": "method:readme#07",
+      "citation": "Content Intelligence README, section 7",
       "collection": "method",
       "content_hash": "1ae82e89a7c3955ac7fc406bcb073d9a15921a7a749d06d2b52061ddaba8eab2",
       "content_kind": "method documentation",
@@ -1017,7 +1056,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#06",
+      "segment_id": "readme#07",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1028,8 +1067,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#07",
-      "citation": "Content Intelligence README, section 7",
+      "chunk_id": "method:readme#08",
+      "citation": "Content Intelligence README, section 8",
       "collection": "method",
       "content_hash": "f52cecb686805dc58db3711819b66628930748c1f74a88d903526f3ee43518f6",
       "content_kind": "method documentation",
@@ -1056,7 +1095,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#07",
+      "segment_id": "readme#08",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1067,8 +1106,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#08",
-      "citation": "Content Intelligence README, section 8",
+      "chunk_id": "method:readme#09",
+      "citation": "Content Intelligence README, section 9",
       "collection": "method",
       "content_hash": "73bacaf54dd8702b053e7061fd348af53b1e19f9e33911d8cfa11f5fd4dd89eb",
       "content_kind": "method documentation",
@@ -1095,7 +1134,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#08",
+      "segment_id": "readme#09",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1106,8 +1145,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#09",
-      "citation": "Content Intelligence README, section 9",
+      "chunk_id": "method:readme#10",
+      "citation": "Content Intelligence README, section 10",
       "collection": "method",
       "content_hash": "d75bab845e61e9f16c03390b386c0c31bf727678a2c4553b4af0a59c06b1c361",
       "content_kind": "method documentation",
@@ -1134,7 +1173,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#09",
+      "segment_id": "readme#10",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1145,8 +1184,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#10",
-      "citation": "Content Intelligence README, section 10",
+      "chunk_id": "method:readme#11",
+      "citation": "Content Intelligence README, section 11",
       "collection": "method",
       "content_hash": "2507690a451538fa28bbc7306f860d153ad7f131f72cf91e9b8a39ceb1fd8f04",
       "content_kind": "method documentation",
@@ -1173,7 +1212,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#10",
+      "segment_id": "readme#11",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1184,8 +1223,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#11",
-      "citation": "Content Intelligence README, section 11",
+      "chunk_id": "method:readme#12",
+      "citation": "Content Intelligence README, section 12",
       "collection": "method",
       "content_hash": "3d515fdfbd5bf99bd1a5e24223a1dce679f004e62e9f5df81295fe31f22ed4ef",
       "content_kind": "method documentation",
@@ -1212,7 +1251,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#11",
+      "segment_id": "readme#12",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1223,8 +1262,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#12",
-      "citation": "Content Intelligence README, section 12",
+      "chunk_id": "method:readme#13",
+      "citation": "Content Intelligence README, section 13",
       "collection": "method",
       "content_hash": "34fc697f62f5702d439e809f20d37fb434858345b5ac287e2f0342b923556b2b",
       "content_kind": "method documentation",
@@ -1251,7 +1290,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#12",
+      "segment_id": "readme#13",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1262,8 +1301,8 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#13",
-      "citation": "Content Intelligence README, section 13",
+      "chunk_id": "method:readme#14",
+      "citation": "Content Intelligence README, section 14",
       "collection": "method",
       "content_hash": "d01afc4682671ffaacc13fcb041f830b81a78cbdb7acfff9ab307a70d3121934",
       "content_kind": "method documentation",
@@ -1290,7 +1329,7 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#13",
+      "segment_id": "readme#14",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
@@ -1301,10 +1340,10 @@
     },
     {
       "artifact_pipeline": "method_documentation",
-      "chunk_id": "method:readme#14",
-      "citation": "Content Intelligence README, section 14",
+      "chunk_id": "method:readme#15",
+      "citation": "Content Intelligence README, section 15",
       "collection": "method",
-      "content_hash": "61243a6ecd18c2292e9750f52c8c01ecbf3b7e583dbe14df22bc97a38b53b06b",
+      "content_hash": "fbb611ba4778fedc9637b238cf67ec8918a44dd7e8efdfe4ad09e448f8d38469",
       "content_kind": "method documentation",
       "corpus_version": 1,
       "domain": "content_intelligence",
@@ -1316,7 +1355,7 @@
       "object_type": "RagIndexRecord",
       "public_safety_level": "L3_public_safe_derivative",
       "retrieval_metadata": {
-        "character_count": 501,
+        "character_count": 515,
         "keywords": [
           "corpus",
           "public",
@@ -1329,13 +1368,52 @@
         ]
       },
       "schema_version": 1,
-      "segment_id": "readme#14",
+      "segment_id": "readme#15",
+      "source_id": "readme",
+      "source_path": "README.md",
+      "source_type": "public method documentation",
+      "source_url": "https://github.com/grant-mccurdy/content-intelligence/blob/main/README.md#licensing",
+      "source_visibility": "public_repo_documentation",
+      "text": "The public repository builds validated retrieval and vector-export records, and\nthe portfolio site exposes a working cited RAG interface over the public-safe\ncorpus. Local release gates include retrieval fixtures, serving-path tests,\ngenerated-answer checks, and corpus-parity validation. The highest-value next\nfeature is genuine PDF, DOCX, HTML, Markdown, and text conversion into the\nexisting `NormalizedArtifact` contract, followed by broader fixture coverage\nand the synchronized `v2` deployment.\n\n## Licensing",
+      "title": "Content Intelligence README"
+    },
+    {
+      "artifact_pipeline": "method_documentation",
+      "chunk_id": "method:readme#16",
+      "citation": "Content Intelligence README, section 16",
+      "collection": "method",
+      "content_hash": "e40a1fc376c9ad7231aae8b791283d77a64ac28ccec6ac0c42ffa9b867a9a4d2",
+      "content_kind": "method documentation",
+      "corpus_version": 1,
+      "domain": "content_intelligence",
+      "embedding_dimensions": 768,
+      "embedding_model": "@cf/baai/bge-base-en-v1.5",
+      "embedding_pooling": "cls",
+      "embedding_status": "ready_for_embedding",
+      "license_status": "public_repo_demo",
+      "object_type": "RagIndexRecord",
+      "public_safety_level": "L3_public_safe_derivative",
+      "retrieval_metadata": {
+        "character_count": 375,
+        "keywords": [
+          "license",
+          "available",
+          "under",
+          "content",
+          "original",
+          "acquired",
+          "code",
+          "data"
+        ]
+      },
+      "schema_version": 1,
+      "segment_id": "readme#16",
       "source_id": "readme",
       "source_path": "README.md",
       "source_type": "public method documentation",
       "source_url": "https://github.com/grant-mccurdy/content-intelligence/blob/main/README.md",
       "source_visibility": "public_repo_documentation",
-      "text": "The public repository builds validated retrieval and vector-export records, and\nthe portfolio site exposes a working cited RAG interface over the public-safe\ncorpus. Local release gates include retrieval fixtures, serving-path tests,\ngenerated-answer checks, and corpus-parity validation. The highest-value next\nfeature is genuine PDF, DOCX, HTML, Markdown, and text conversion into the\nexisting `NormalizedArtifact` contract, followed by broader fixture coverage\nand the synchronized `v2` deployment.",
+      "text": "- Code is available under the [MIT License](LICENSE).\n- Original documentation and generated visual content are available under [CC BY 4.0](LICENSE-CONTENT.md).\n- Original synthetic datasets are available under [CC BY 4.0](LICENSE-DATA.md).\n\nThird-party materials, trademarks, personal likenesses, and acquired source material are excluded unless explicitly stated otherwise.",
       "title": "Content Intelligence README"
     },
     {
