@@ -1,5 +1,7 @@
 # Content Intelligence
 
+[![Quality](https://github.com/grant-mccurdy/content-intelligence/actions/workflows/quality.yml/badge.svg)](https://github.com/grant-mccurdy/content-intelligence/actions/workflows/quality.yml)
+
 Artifact-to-RAG pipeline for turning disparate source material into
 provenance-rich information objects and source-grounded answers.
 
@@ -9,6 +11,8 @@ provenance-rich information objects and source-grounded answers.
 - [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
 - [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
 - [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
+
+![Live cited RAG answer grounded in the reviewed public corpus](screenshots/live-rag-cited-answer.png)
 
 The public workflow standardizes synthetic text, transcript-derived, and
 OCR-derived content into one auditable object chain:
@@ -169,3 +173,11 @@ generated-answer checks, and corpus-parity validation. The highest-value next
 feature is genuine PDF, DOCX, HTML, Markdown, and text conversion into the
 existing `NormalizedArtifact` contract, followed by broader fixture coverage
 and the synchronized `v2` deployment.
+
+## Licensing
+
+- Code is available under the [MIT License](LICENSE).
+- Original documentation and generated visual content are available under [CC BY 4.0](LICENSE-CONTENT.md).
+- Original synthetic datasets are available under [CC BY 4.0](LICENSE-DATA.md).
+
+Third-party materials, trademarks, personal likenesses, and acquired source material are excluded unless explicitly stated otherwise.
