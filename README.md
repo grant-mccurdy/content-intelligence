@@ -7,9 +7,9 @@ provenance-rich information objects and source-grounded answers.
 
 ## Project Links
 
-- [Try the live cited RAG demo](https://grant-mccurdy.github.io/projects/content-intelligence.html#live-rag)
+- [Try the live cited RAG demo](https://grant-mccurdy.github.io/demos/content-rag.html)
 - [Read the portfolio brief](https://grant-mccurdy.github.io/projects/content-intelligence.html)
-- [Review the pipeline case study](https://grant-mccurdy.github.io/case-studies/content-intelligence.html)
+- [Browse the portfolio demo directory](https://grant-mccurdy.github.io/demos/)
 - [Inspect the generated demo report](https://grant-mccurdy.github.io/projects/content-intelligence-demo-report.html)
 
 ![Live cited RAG answer grounded in the reviewed public corpus](screenshots/live-rag-cited-answer.png)
